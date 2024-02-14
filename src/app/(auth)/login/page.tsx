@@ -13,33 +13,33 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const url = `${process.env.NEXT_PIXBALL_URL}/client/login`;
+    // const url = `${process.env.NEXT_PIXBALL_URL}/client/login`;
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      // const res = await response.json();
-      // console.log("Res", res);
-      if (response.ok) {
-        // Assuming the response contains a token
-        // Store token in local storage or cookie
-        // localStorage.setItem("token", data.token);
-        // Redirect to dashboard or desired page
-        router.push("/");
-      } else {
-        setError("Invalid Credentials");
-        console.error("Login failed");
-      }
-    } catch (error) {
-      console.error("Error logging in:", error);
-    }
+    // try {
+    //   const response = await fetch(url, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ email, password }),
+    //   });
+    //   // const res = await response.json();
+    //   // console.log("Res", res);
+    //   if (response.ok) {
+    //     // Assuming the response contains a token
+    //     // Store token in local storage or cookie
+    //     // localStorage.setItem("token", data.token);
+    //     // Redirect to dashboard or desired page
+    //     router.push("/");
+    //   } else {
+    //     setError("Invalid Credentials");
+    //     console.error("Login failed");
+    //   }
+    // } catch (error) {
+    //   console.error("Error logging in:", error);
+    // }
 
-    // router.push("/");
+    router.push("/");
   };
 
   return (
