@@ -1,6 +1,7 @@
 import DropdownUser from "./DropdownUser";
 import { MessageIcon, NotifIcon, SettingsIcon } from "../Icons/";
 import Logout from "./Logout";
+import DarkModeSwitcher from "./DarkModeSwitcher";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -88,6 +89,7 @@ const Header = (props: {
 
         <div className="flex items-center gap-3 2xsm:gap-4">
           <ul className="flex items-center gap-2 2xsm:gap-6">
+            <DarkModeSwitcher />
             <NotifIcon className="dark:stroke-white stroke-black cursor-pointer hover:stroke-primary dark:hover:stroke-primary" />
             <SettingsIcon className="dark:stroke-white stroke-black cursor-pointer hover:stroke-primary dark:hover:stroke-primary" />
             <MessageIcon className="dark:stroke-white stroke-black cursor-pointer hover:stroke-primary dark:hover:stroke-primary" />

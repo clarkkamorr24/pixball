@@ -28,6 +28,7 @@ const config: Config = {
       dark: "#202020",
       warning: "#FF9F00",
       success: "#3AC977",
+      shadow: "#2e2e2d",
     },
     screens: {
       "2xsm": "375px",

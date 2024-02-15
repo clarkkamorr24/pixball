@@ -1,30 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import SidebarLinkGroup from "./SidebarLinkGroup";
-import Image from "next/image";
 import useColorMode from "@/hooks/useColorMode";
 
 import {
-  DashboardIcon,
   EmployeesIcon,
   CoreHRIcon,
   FinanceIcon,
   TaskIcon,
   PerformanceIcon,
   ProjectsIcon,
-  ReportsIcon,
-  ManageIcon,
-  AppsIcon,
-  ChartIcon,
-  BootstrapIcon,
-  PluginsIcon,
-  WidgetIcon,
-  FormsIcon,
-  TableIcon,
-  PagesIcon,
-  IndicatorIcon,
-  PointerIcon,
 } from "../Icons/";
 
 interface SidebarProps {
@@ -83,20 +68,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute border-r dark:border-lightGray left-0 top-0 z-9999 flex h-screen w-62.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
+      className={`absolute border-r border-bodydark1 dark:border-shadow left-0 top-0 z-9999 flex h-screen w-62.5 flex-col overflow-y-hidden bg-white dark:bg-black dark:bg-boxdark lg:static lg:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-center px-6 py-2.5 lg:py-3.5 bg-gray">
-        <Link href="/">
-          <Image
-            width={100}
-            height={100}
-            src={"/images/logo/logo.svg"}
-            alt="Logo"
-          />
-        </Link>
+      <div className="flex items-center justify-center px-6 py-1.5 bg-white dark:bg-gray drop-shadow-2">
+        <span className="text-5xl font-bold text-black dark:text-bodydark1 ">
+          CRM
+        </span>
 
         <button
           ref={trigger}
@@ -125,362 +105,149 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         <nav className="mt-4 py-4">
           <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-primary">
-              YOUR COMPANY
-            </h3>
             <ul className="mb-6 flex flex-col gap-1.5">
-              <SidebarLinkGroup activeCondition={pathname === "/"}>
-                {(handleClick, open) => {
-                  return (
-                    <React.Fragment>
-                      <Link
-                        href="/"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                          pathname.includes("/") &&
-                          "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                        }`}
-                        onClick={(e) => {
-                          router.push("/");
-                          e.preventDefault();
-                          sidebarExpanded
-                            ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
-                        <DashboardIcon
-                          className={
-                            pathname === "/"
-                              ? "stroke-primary"
-                              : "stroke-stroke"
-                          }
-                        />
-                        Dashboard
-                        <PointerIcon
-                          className={`nav absolute right-4 top-1/2 -translate-y-1/2 ${
-                            open && "rotate-180 stroke-primary"
-                          }`}
-                        />
-                      </Link>
-                      <div
-                        className={`translate transform overflow-hidden ${
-                          !open && "hidden"
-                        }`}
-                      >
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                          <li className="cursor-pointer">
-                            <div
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1 hover:text-white dark:hover:bg-meta-4 duration-300 ease-in-out`}
-                              onClick={() => {
-                                if (typeof setColorMode === "function") {
-                                  setColorMode("light");
-                                }
-                              }}
-                            >
-                              <IndicatorIcon />
-                              Dashboard Light
-                            </div>
-                          </li>
-                          <li className="cursor-pointer">
-                            <div
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark1 hover:text-white dark:hover:bg-meta-4 duration-300 ease-in-out`}
-                              onClick={() => {
-                                if (typeof setColorMode === "function") {
-                                  setColorMode("dark");
-                                }
-                              }}
-                            >
-                              <IndicatorIcon />
-                              Dashboard Dark
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </React.Fragment>
-                  );
-                }}
-              </SidebarLinkGroup>
               <li>
                 <Link
-                  href="/employees"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("employees") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
+                  href="/"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black dark:text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:hover:text-white ${
+                    pathname === "/" &&
+                    "bg-primary bg-opacity-10 text-primary dark:text-primary"
                   }`}
                 >
                   <EmployeesIcon
                     className={
-                      pathname === "/employees"
+                      pathname === "/"
                         ? "stroke-primary"
-                        : "stroke-stroke"
+                        : "stroke-black dark:stroke-bodydark1"
                     }
                   />
-                  Employees
+                  Dashboard
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/core-hr"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("core-hr") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
+                  href="/casinos"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black dark:text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:hover:text-white ${
+                    pathname.includes("casinos") &&
+                    "bg-primary bg-opacity-10 text-primary dark:text-primary"
+                  }`}
+                >
+                  <EmployeesIcon
+                    className={
+                      pathname === "/casinos"
+                        ? "stroke-primary"
+                        : "stroke-black dark:stroke-bodydark1"
+                    }
+                  />
+                  Casinos
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/crm-users"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black dark:text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:hover:text-white ${
+                    pathname.includes("crm-users") &&
+                    "bg-primary bg-opacity-10 text-primary dark:text-primary"
                   }`}
                 >
                   <CoreHRIcon
                     className={
-                      pathname === "/core-hr"
+                      pathname === "/crm-users"
                         ? "stroke-primary"
-                        : "stroke-stroke"
+                        : "stroke-black dark:stroke-bodydark1"
                     }
                   />
-                  Core HR
+                  CRM Users
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/finance"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("finance") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
+                  href="/clients"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black dark:text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:hover:text-white ${
+                    pathname.includes("clients") &&
+                    "bg-primary bg-opacity-10 text-primary dark:text-primary"
                   }`}
                 >
                   <FinanceIcon
                     className={
-                      pathname === "/finance"
+                      pathname === "/clients"
                         ? "stroke-primary"
-                        : "stroke-stroke"
+                        : "stroke-black dark:stroke-bodydark1"
                     }
                   />
-                  Finance
+                  Clients
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/task"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("task") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
+                  href="/betting-monitor"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black dark:text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:hover:text-white ${
+                    pathname.includes("betting-monitor") &&
+                    "bg-primary bg-opacity-10 text-primary dark:text-primary"
                   }`}
                 >
                   <TaskIcon
                     className={
-                      pathname === "/task" ? "stroke-primary" : "stroke-stroke"
+                      pathname === "/betting-monitor"
+                        ? "stroke-primary"
+                        : "stroke-black dark:stroke-bodydark1"
                     }
                   />
-                  Task
+                  Betting Monitor Bonuses
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/performance"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("performance") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
+                  href="/bonuses"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black dark:text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:hover:text-white ${
+                    pathname.includes("bonuses") &&
+                    "bg-primary bg-opacity-10 text-primary dark:text-primary"
                   }`}
                 >
                   <PerformanceIcon
                     className={
-                      pathname === "/performance"
+                      pathname === "/bonuses"
                         ? "stroke-primary"
-                        : "stroke-stroke"
+                        : "stroke-black dark:stroke-bodydark1"
                     }
                   />
-                  Performance
+                  Bonuses
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/projects"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("projects") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
+                  href="/integrations"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black dark:text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:hover:text-white ${
+                    pathname.includes("integrations") &&
+                    "bg-primary bg-opacity-10 text-primary dark:text-primary"
+                  }`}
+                >
+                  <PerformanceIcon
+                    className={
+                      pathname === "/integrations"
+                        ? "stroke-primary"
+                        : "stroke-black dark:stroke-bodydark1"
+                    }
+                  />
+                  Integrations
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/game-settings"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black dark:text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:hover:text-white ${
+                    pathname.includes("game-settings") &&
+                    "bg-primary bg-opacity-10 text-primary dark:text-primary"
                   }`}
                 >
                   <ProjectsIcon
                     className={
-                      pathname === "/projects"
+                      pathname === "/game-settings"
                         ? "stroke-primary"
-                        : "stroke-stroke"
+                        : "stroke-black dark:stroke-bodydark1"
                     }
                   />
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/reports"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("reports") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <ReportsIcon
-                    className={
-                      pathname === "/reports"
-                        ? "stroke-primary"
-                        : "stroke-stroke"
-                    }
-                  />
-                  Reports
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/manage"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("manage") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <ManageIcon
-                    className={
-                      pathname === "/manage"
-                        ? "stroke-primary"
-                        : "stroke-stroke"
-                    }
-                  />
-                  Manage Clients
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-primary">
-              OUR FEATURES
-            </h3>
-
-            <ul className="mb-6 flex flex-col gap-1.5">
-              <li>
-                <Link
-                  href="/apps"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("apps") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <AppsIcon
-                    className={
-                      pathname === "/apps" ? "stroke-primary" : "stroke-stroke"
-                    }
-                  />
-                  Apps
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/chart"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("chart") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <ChartIcon
-                    className={
-                      pathname === "/chart" ? "stroke-primary" : "stroke-stroke"
-                    }
-                  />
-                  Charts
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/bootstrap"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("bootstrap") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <BootstrapIcon
-                    className={
-                      pathname === "/bootstrap"
-                        ? "stroke-primary"
-                        : "stroke-stroke"
-                    }
-                  />
-                  Bootstrap
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/plugin"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("plugin") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <PluginsIcon
-                    className={
-                      pathname === "/plugin"
-                        ? "stroke-primary"
-                        : "stroke-stroke"
-                    }
-                  />
-                  Plugins
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/widget"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("widget") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <WidgetIcon
-                    className={
-                      pathname === "/widget"
-                        ? "stroke-primary"
-                        : "stroke-stroke"
-                    }
-                  />
-                  Widget
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/forms"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("forms") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <FormsIcon
-                    className={
-                      pathname === "/forms" ? "stroke-primary" : "stroke-stroke"
-                    }
-                  />
-                  Forms
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/table"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("table") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <TableIcon
-                    className={
-                      pathname === "/table" ? "stroke-primary" : "stroke-stroke"
-                    }
-                  />
-                  Table
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pages"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-white dark:hover:bg-meta-4 ${
-                    pathname.includes("pages") &&
-                    "bg-primary bg-opacity-10 dark:bg-meta-4 text-white"
-                  }`}
-                >
-                  <PagesIcon
-                    className={
-                      pathname === "/pages" ? "stroke-primary" : "stroke-stroke"
-                    }
-                  />
-                  Pages
+                  Game Settings
                 </Link>
               </li>
               <li>
