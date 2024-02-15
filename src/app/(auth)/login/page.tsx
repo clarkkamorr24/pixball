@@ -3,60 +3,58 @@ import { useRouter } from "next/navigation";
 import { EyeCloseIcon, EyeOpenIcon } from "@/components/Icons";
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { signIn } from "next-auth/react";
+import { useFormik } from "formik";
+import loginValidate from "@/lib/validate";
+
+type ValuesType = {
+  email: string;
+  password: string;
+};
 
 const LoginForm = () => {
+  const [show, setShow] = useState<boolean>(false);
+  const [error, setError] = useState<string | null | undefined>("");
+
   const router = useRouter();
-  const [show, setShow] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    // const url = `${process.env.NEXT_PIXBALL_URL}/client/login`;
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validate: loginValidate,
+    onSubmit,
+  });
 
-    // try {
-    //   const response = await fetch(url, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ email, password }),
-    //   });
-    //   // const res = await response.json();
-    //   // console.log("Res", res);
-    //   if (response.ok) {
-    //     // Assuming the response contains a token
-    //     // Store token in local storage or cookie
-    //     // localStorage.setItem("token", data.token);
-    //     // Redirect to dashboard or desired page
-    //     router.push("/");
-    //   } else {
-    //     setError("Invalid Credentials");
-    //     console.error("Login failed");
-    //   }
-    // } catch (error) {
-    //   console.error("Error logging in:", error);
-    // }
-
-    router.push("/");
-  };
+  async function onSubmit(values: ValuesType) {
+    const { email, password } = values;
+    const status = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+      callbackUrl: "/",
+    });
+    if (status?.ok) {
+      router.push("/");
+    } else {
+      setError(status?.error);
+      router.push("/login");
+    }
+  }
 
   return (
     <div>
-      <div className="flex justify-center my-2 mx-4 md:mx-0 mt-24">
+      <div className="flex justify-center my-2 mx-4 md:mx-0 mt-35">
         <div className="w-full max-w-md bg-gray rounded-lg shadow-md p-6 border border-stroke">
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-col text-white justify-center ">
+          <form onSubmit={formik.handleSubmit}>
+            <div className="flex flex-col text-white justify-center mb-5">
               <span className="text-center font-bold text-4xl">CRM</span>
               <p className="text-center">Login Account</p>
+              {error !== "" && (
+                <span className="block text-red pt-2 text-center">{error}</span>
+              )}
             </div>
-            {error !== "" && (
-              <div className="text-center my-2 text-red">
-                {" "}
-                Invalid Credentials!
-              </div>
-            )}
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-full px-3 mb-6">
                 <label
@@ -67,14 +65,17 @@ const LoginForm = () => {
                 </label>
                 <input
                   className="appearance-none block w-full bg-dark text-white font-medium rounded-lg py-3 px-3 leading-tight outline-none focus:outline-stroke"
+                  {...formik.getFieldProps("email")}
                   type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value), setError("");
-                  }}
-                  required
+                  name="email"
                 />
+                {formik.errors.email && formik.touched.email && (
+                  <span className="block text-red text-xs mt-2">
+                    {formik.errors.email}
+                  </span>
+                )}
               </div>
+
               <div className="w-full md:w-full mb-6">
                 <div className="relative dark:bg-lightGray px-3 rounded-md">
                   <button
@@ -97,12 +98,16 @@ const LoginForm = () => {
                     Password
                   </label>
                   <input
+                    {...formik.getFieldProps("password")}
                     className="appearance-none block w-full bg-dark text-white font-medium rounded-lg py-3 px-3 leading-tight outline-none focus:outline-stroke"
-                    type={show ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
+                    name="password"
+                    type={`${show ? "text" : "password"}`}
                   />
+                  {formik.errors.password && formik.touched.password && (
+                    <span className="block text-red text-xs mt-2">
+                      {formik.errors.password}
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="w-full flex items-center justify-between px-3 mb-3 ">
@@ -117,7 +122,10 @@ const LoginForm = () => {
                 </div>
               </div>
               <div className="w-full md:w-full px-3 mb-6">
-                <button className="appearance-none block w-full bg-primary text-white font-bold rounded-lg py-3 px-3 leading-tight hover:bg-blue-500 focus:outline-none">
+                <button
+                  type="submit"
+                  className="appearance-none block w-full bg-primary text-white font-bold rounded-lg py-3 px-3 leading-tight hover:bg-blue-500 focus:outline-none"
+                >
                   Log in
                 </button>
               </div>

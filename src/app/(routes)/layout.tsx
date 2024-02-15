@@ -1,24 +1,20 @@
 "use client";
-import { Poppins } from "next/font/google";
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import "../globals.css";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
+import Providers from "@/components/Provider";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400"],
-});
-
-export default function RoutesLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <html lang="en">
-      <body className={poppins.className} suppressHydrationWarning={true}>
+    <div>
+      <Providers>
         <div className="dark:bg-black dark:text-bodydark bg-white">
           <div className="flex h-screen overflow-hidden">
             <Sidebar
@@ -36,7 +32,7 @@ export default function RoutesLayout({
             </div>
           </div>
         </div>
-      </body>
-    </html>
+      </Providers>
+    </div>
   );
 }

@@ -1,14 +1,11 @@
 import Dashboard from "@/components/Dashboard";
-import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "CRM Dashboard",
-  description: "dashboard",
-};
 
-export default function DashboardPage() {
+const Home = () => {
   return (
     <div>
       <Dashboard />
     </div>
   );
-}
+};
+
+export default Home;

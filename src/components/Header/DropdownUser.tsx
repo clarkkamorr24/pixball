@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 const DropdownUser = () => {
+  const { data: session, status } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
 
-  // close on click outside
+  const name = `${session?.user.firstName} ${session?.user.lastName}`;
+  const email = session?.user.email;
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
       if (!dropdown.current) return;
@@ -52,9 +54,9 @@ const DropdownUser = () => {
         </span>
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Fleming
+            {name}
           </span>
-          <span className="block text-xs">info@gmail.com</span>
+          <span className="block text-xs">{email}</span>
         </span>
       </Link>
     </div>

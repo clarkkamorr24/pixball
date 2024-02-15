@@ -6,7 +6,7 @@ const poppins = Poppins({
   weight: ["400"],
 });
 
-export default function DashboardLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;

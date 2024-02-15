@@ -1,6 +1,6 @@
 import DropdownUser from "./DropdownUser";
 import { MessageIcon, NotifIcon, SettingsIcon } from "../Icons/";
-import Link from "next/link";
+import Logout from "./Logout";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -92,11 +92,7 @@ const Header = (props: {
             <SettingsIcon className="dark:stroke-white stroke-black cursor-pointer hover:stroke-primary dark:hover:stroke-primary" />
             <MessageIcon className="dark:stroke-white stroke-black cursor-pointer hover:stroke-primary dark:hover:stroke-primary" />
             {/* seperator */}
-            <Link href="/login">
-              <button className="rounded-md bg-primary px-4 py-1 text-white">
-                Logout
-              </button>
-            </Link>
+            <Logout />
             <div className="flex p-1.5 border-r border-mediumGray">
               <span className="relative h-11.5 cursor-pointer top-3"></span>
             </div>
