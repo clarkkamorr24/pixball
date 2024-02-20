@@ -138,25 +138,11 @@ const ProjectOverview = () => {
   handleReset;
 
   return (
-    <div className="dark:outline-strokedark pt-7.5 outline-stroke flex flex-col rounded-md bg-white outline outline-1 md:col-span-2 xl:col-span-3 dark:bg-black">
-      <div className="px-7.5 flex items-center justify-between">
+    <div className="dark:outline-strokedark flex flex-col rounded-md bg-white pt-7.5 outline outline-1 outline-stroke dark:bg-black md:col-span-2 xl:col-span-3">
+      <div className="flex items-center justify-between px-7.5">
         <p className="font-semibold text-black dark:text-white">
           Project Overview
         </p>
-        <div className="inline-flex gap-2">
-          <button className="dark:hover:bg-boxdark bg-primary shadow-card hover:shadow-card rounded px-3 py-1 text-xs font-medium text-white dark:text-white">
-            Week
-          </button>
-          <button className="dark:hover:bg-boxdark bg-primary shadow-card hover:shadow-card rounded px-3 py-1 text-xs font-medium  text-white dark:text-white">
-            Month
-          </button>
-          <button className="dark:hover:bg-boxdark bg-primary shadow-card hover:shadow-card rounded px-3 py-1 text-xs  font-medium  text-white dark:text-white">
-            Year
-          </button>
-          <button className="dark:hover:bg-boxdark bg-primary shadow-card hover:shadow-card rounded px-3 py-1 text-xs  font-medium  text-white dark:text-white">
-            All
-          </button>
-        </div>
       </div>
 
       <div className="-ml-5 h-[400px] px-5 pb-3">
@@ -169,20 +155,20 @@ const ProjectOverview = () => {
         />
       </div>
       <div className="flex flex-grow">
-        <div className="border-t-stroke flex flex-1 border-t text-sm md:text-sm xl:text-base">
-          <div className="dark:text-stroke flex h-full w-1/4 flex-col  justify-center border-r p-2 text-center text-black">
+        <div className="flex flex-1 border-t border-t-stroke text-sm md:text-sm xl:text-base">
+          <div className="flex h-full w-1/4 flex-col justify-center  border-r p-2 text-center text-black dark:text-stroke">
             <p className="dark:text-white">12,721</p>
             <p>Number of Projects</p>
           </div>
-          <div className="border-r-stroke dark:text-stroke flex w-1/4 flex-col justify-center border-r p-2 text-center text-black">
+          <div className="flex w-1/4 flex-col justify-center border-r border-r-stroke p-2 text-center text-black dark:text-stroke">
             <p className="dark:text-white">721</p>
             <p>Active Projects</p>
           </div>
-          <div className="border-r-stroke dark:text-stroke flex w-1/4 flex-col justify-center border-r p-2 text-center text-black">
+          <div className="flex w-1/4 flex-col justify-center border-r border-r-stroke p-2 text-center text-black dark:text-stroke">
             <p className="dark:text-white">$250,5231</p>
             <p>Revenue</p>
           </div>
-          <div className="dark:text-stroke flex w-1/4 flex-col justify-center p-2 text-center text-black">
+          <div className="flex w-1/4 flex-col justify-center p-2 text-center text-black dark:text-stroke">
             <p className="dark:text-white">12,275h</p>
             <p>Working Hours</p>
           </div>

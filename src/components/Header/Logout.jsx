@@ -25,7 +25,7 @@ const Logout = () => {
   return (
     <div>
       <button
-        className="rounded-md bg-primary px-4 py-1 text-white"
+        className="rounded-md bg-red px-4 py-1 text-white"
         onClick={handleLogout}
       >
         Logout

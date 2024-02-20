@@ -17,24 +17,44 @@ export const metadata = {
 export default function Dashboard() {
   return (
     <div>
+      <div className="inline-flex w-full gap-2 pb-5">
+        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white shadow-card hover:shadow-card dark:text-white">
+          Today
+        </button>
+        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white shadow-card  hover:shadow-card dark:text-white">
+          Yesterday
+        </button>
+        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+          Week
+        </button>
+        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+          Month
+        </button>
+        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+          Custom
+        </button>
+        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+          All
+        </button>
+      </div>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-6 2xl:gap-6">
         <CardStats title="Total Deposit" total="$1200.00" chart="Bar">
-          <div className="bg-primary rounded-md bg-opacity-10 px-4 py-3">
+          <div className="rounded-md bg-primary bg-opacity-10 px-4 py-3">
             <DollarIcon className="fill-primary stroke-primary" />
           </div>
         </CardStats>
         <CardStats title="All Projects" total="$45,2K" chart="Pie">
-          <div className="bg-primary rounded-md bg-opacity-10 px-4 py-3">
+          <div className="rounded-md bg-primary bg-opacity-10 px-4 py-3">
             <DollarIcon className="fill-primary stroke-primary" />
           </div>
         </CardStats>
         <CardStats title="Total Expenses" total="$1200.00" chart="Bar">
-          <div className="bg-red rounded-md bg-opacity-10 px-4 py-3">
+          <div className="rounded-md bg-red bg-opacity-10 px-4 py-3">
             <DollarIcon className="fill-red stroke-red" />
           </div>
         </CardStats>
         <CardStats title="Total Deposit" total="20" chart="Progress">
-          <div className="bg-primary rounded-md bg-opacity-10 px-3 py-3">
+          <div className="rounded-md bg-primary bg-opacity-10 px-3 py-3">
             <DepositIcon className="fill-primary stroke-primary" />
           </div>
         </CardStats>
