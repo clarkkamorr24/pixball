@@ -50,7 +50,9 @@ export function registerValidate(values) {
 export function OtpValidate(values) {
   const errors = {};
   if (Object.values(values.otp).some((data) => data === "")) {
-    errors.otp = "This field is required";
+    errors.otp = true;
+  } else {
+    errors.otp = false;
   }
   return errors;
 }

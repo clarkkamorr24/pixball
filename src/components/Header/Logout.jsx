@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 
 const Logout = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -15,27 +15,17 @@ const Logout = () => {
     });
 
     await axios
-      .post(
-        `api/logout`,
-        {
-          email: session.email,
-          refreshToken: session.refresh.token,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      )
-      .then((data) => {
-        console.log("Data", data);
-      });
+      .post(`api/logout`, {
+        email: session.email,
+        refreshToken: session.refresh.token,
+      })
+      .then((data) => data.status);
   };
 
   return (
     <div>
       <button
-        className="bg-primary rounded-md px-4 py-1 text-white"
+        className="rounded-md bg-primary px-4 py-1 text-white"
         onClick={handleLogout}
       >
         Logout

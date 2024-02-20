@@ -21,7 +21,7 @@ const CardStats = ({ title, total, children, chart }) => {
   };
 
   return (
-    <div className="dark:outline-strokedark outline-stroke rounded-md bg-white outline outline-1 dark:bg-black">
+    <div className="dark:outline-strokedark rounded-md bg-white outline outline-1 outline-stroke dark:bg-black">
       {renderSwitch(chart)}
     </div>
   );

@@ -10,9 +10,9 @@ const VectorMap = dynamic(
 
 const ActiveUser = () => {
   return (
-    <div className="dark:outline-strokedark outline-stroke flex flex-col rounded-md bg-white outline outline-1 md:col-span-2 xl:col-span-3 dark:bg-black">
+    <div className="dark:outline-strokedark flex flex-col rounded-md bg-white outline outline-1 outline-stroke dark:bg-black md:col-span-2 xl:col-span-3">
       <div className="grid h-full md:grid-cols-2 xl:grid-cols-3">
-        <div className="pt-7.5 col-span-1 w-auto md:col-span-1 xl:col-span-2">
+        <div className="col-span-1 w-auto pt-7.5 md:col-span-1 xl:col-span-2">
           <h3 className="px-4 font-semibold text-black dark:text-white">
             Active Users
           </h3>
@@ -46,7 +46,7 @@ const ActiveUser = () => {
             />
           </div>
         </div>
-        <div className="pt-6.5 col-span-1 px-4 xl:col-span-1">
+        <div className="col-span-1 px-4 pt-6.5 xl:col-span-1">
           <Flaglist />
         </div>
       </div>

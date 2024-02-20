@@ -1,22 +1,27 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { useFormik } from "formik";
+import { useFormik, Formik } from "formik";
 import { OtpValidate } from "@/lib/validate";
+// import { useSession } from "next-auth/react";
 
 const Form = () => {
+  // const { data: session, status } = useSession();
+  // console.log("session", session);
+  // console.log("status", status);
   const formik = useFormik({
     initialValues: {
       otp: Array.from({ length: 6 }).fill(""),
     },
     validate: OtpValidate,
-    onSubmit,
+    onSubmit: () => {},
   });
 
   const inputRef = useRef({});
 
-  async function onSubmit(values) {
-    console.log("values", values);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log("fvalues", formik.values);
   }
 
   useEffect(() => {
@@ -75,7 +80,7 @@ const Form = () => {
   const renderInput = () => {
     return formik.values.otp.map((value, index) => (
       <input
-        className="bg-dark focus:outline-stroke h-15 w-12 appearance-none rounded-lg px-3 py-3 text-center font-medium leading-tight text-white outline-none"
+        className="h-15 w-12 appearance-none rounded-lg bg-dark px-3 py-3 text-center font-medium leading-tight text-white outline-none focus:outline-stroke"
         ref={(element) => (inputRef.current[index] = element)}
         type="text"
         name={index}
@@ -90,7 +95,7 @@ const Form = () => {
 
   return (
     <div>
-      <form onSubmit={formik.handleSubmit}>
+      <Formik>
         <div className="container mx-auto">
           <div className="mx-auto max-w-sm md:max-w-lg">
             <div className="w-full">
@@ -106,15 +111,15 @@ const Form = () => {
                 <div className="mt-5 flex flex-row justify-center gap-3 px-2 text-center">
                   {renderInput()}
                 </div>
-                {console.log("mik", formik.errors.otp)}
                 <div className="mt-10 flex justify-center text-center">
                   <button
-                    className="bg-primary px-15 rounded-sm py-3 disabled:bg-opacity-50"
+                    className="rounded-sm bg-primary px-15 py-3 disabled:bg-opacity-50"
                     type="submit"
                     disabled={
                       formik.errors.otp ||
-                      (formik.errors.otp == undefined && true)
+                      (formik.errors.otp === undefined && true)
                     }
+                    onClick={(e) => handleSubmit(e)}
                   >
                     Verify
                   </button>
@@ -123,7 +128,7 @@ const Form = () => {
             </div>
           </div>
         </div>
-      </form>
+      </Formik>
     </div>
   );
 };

@@ -4,9 +4,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 
 const DropdownUser = () => {
-  const { data: session, status } = useSession();
-  console.log("session", session);
-  console.log("status", status);
+  const { data: session } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const trigger = useRef(null);
   const dropdown = useRef(null);

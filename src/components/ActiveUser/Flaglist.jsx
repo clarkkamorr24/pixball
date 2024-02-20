@@ -55,9 +55,9 @@ const Flaglist = () => {
                   <h3>{item.name}</h3>
                   <h3>{item.percentage}%</h3>
                 </div>
-                <div className="bg-stroke mt-2 flex h-1.5 w-full rounded-full">
+                <div className="mt-2 flex h-1.5 w-full rounded-full bg-stroke">
                   <div
-                    className="bg-primary h-1.5 rounded-full"
+                    className="h-1.5 rounded-full bg-primary"
                     style={{ width: `${item.percentage}%` }}
                   ></div>
                 </div>

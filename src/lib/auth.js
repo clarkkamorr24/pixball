@@ -24,15 +24,13 @@ export const authOptions = {
                 },
               },
             )
-            .then((data) => {
-              return data.data;
-            });
-          console.log("users", user);
+            .then((data) => data.data);
+
           const userDetails = {
             ...user.data,
             ...user.tokens,
           };
-          console.log("userDetails", userDetails);
+
           return userDetails;
         } catch (error) {
           throw new Error(error.response.data.message);

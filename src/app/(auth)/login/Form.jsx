@@ -1,11 +1,11 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { EyeCloseIcon, EyeOpenIcon } from "@/components/Icons";
 import React, { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { signIn } from "next-auth/react";
-import { useFormik } from "formik";
+import { EyeCloseIcon, EyeOpenIcon } from "@/components/Icons";
 import loginValidate from "@/lib/validate";
+import { useFormik } from "formik";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 const Form = () => {
   const [show, setShow] = useState(false);

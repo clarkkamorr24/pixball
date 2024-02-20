@@ -149,20 +149,20 @@ const DataTable = () => {
 
         <div className="flex gap-5">
           <button
-            className="text-primary cursor-pointer text-xl font-bold"
+            className="cursor-pointer text-xl font-bold text-primary"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             {"<"}
           </button>
           <div className="flex gap-2">
-            <button className="bg-primary rounded-md px-3">
+            <button className="rounded-md bg-primary px-3">
               {table.getState().pagination.pageIndex + 1}
             </button>
           </div>
 
           <button
-            className="text-primary cursor-pointer text-xl font-bold"
+            className="cursor-pointer text-xl font-bold text-primary"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >

@@ -1,7 +1,7 @@
 export default function AuthLayout({ children }) {
   return (
     <div>
-      <div className="bg-dark flex h-screen w-full justify-center">
+      <div className="flex h-screen w-full justify-center bg-dark">
         {children}
       </div>
     </div>

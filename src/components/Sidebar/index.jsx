@@ -1,16 +1,11 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import {
-  EmployeesIcon,
-  CoreHRIcon,
-  FinanceIcon,
-  TaskIcon,
-  PerformanceIcon,
-  BackIcon,
-  NotifIcon,
-} from "../Icons";
+import { BackIcon, ChevronDownIcon } from "../Icons";
+import { sideNavItem } from "@/data/sideNav";
+import SidebarLinkGroup from "./SidebarLinkGroup";
+import { cn } from "@/lib/utils";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const pathname = usePathname();
@@ -61,13 +56,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <aside
       ref={sidebar}
-      className={`dark:bg-boxdark z-9999 w-62.5 border-bodydark1 dark:border-shadow absolute left-0 top-0 flex h-screen flex-col overflow-y-hidden border-r bg-white lg:static lg:translate-x-0 dark:bg-black ${
-        sidebarOpen ? "translate-x-0" : "-translate-x-full"
-      }`}
+      className={cn(
+        "dark:bg-boxdark absolute left-0 top-0 z-9999 flex h-screen w-62.5 flex-col overflow-y-hidden border-r border-bodydark1 bg-white dark:border-shadow dark:bg-black lg:static lg:translate-x-0",
+        sidebarOpen ? "translate-x-0" : "-translate-x-full",
+      )}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="drop-shadow-2 dark:bg-gray flex items-center justify-center bg-white px-6 py-1.5">
-        <span className="dark:text-bodydark1 text-5xl font-bold text-black ">
+      <div className="flex items-center justify-center bg-white px-6 py-1.5 drop-shadow-2 dark:bg-gray">
+        <span className="text-5xl font-bold text-black dark:text-bodydark1 ">
           CRM
         </span>
 
@@ -87,157 +83,80 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         <nav className="mt-4 py-4">
           <div>
             <ul className="mb-6 flex flex-col gap-1.5">
-              <li>
-                <Link
-                  href="/"
-                  className={`hover:bg-primary dark:text-bodydark1 group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-opacity-10 dark:hover:text-white ${
-                    pathname === "/" &&
-                    "bg-primary text-primary dark:text-primary bg-opacity-10"
-                  }`}
-                >
-                  <EmployeesIcon
-                    className={
-                      pathname === "/"
-                        ? "stroke-primary"
-                        : "dark:stroke-bodydark1 stroke-black"
-                    }
-                  />
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/casinos"
-                  className={`hover:bg-primary dark:text-bodydark1 group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-opacity-10 dark:hover:text-white ${
-                    pathname.includes("casinos") &&
-                    "bg-primary text-primary dark:text-primary bg-opacity-10"
-                  }`}
-                >
-                  <EmployeesIcon
-                    className={
-                      pathname === "/casinos"
-                        ? "stroke-primary"
-                        : "dark:stroke-bodydark1 stroke-black"
-                    }
-                  />
-                  Casinos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/crm-users"
-                  className={`hover:bg-primary dark:text-bodydark1 group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-opacity-10 dark:hover:text-white ${
-                    pathname.includes("crm-users") &&
-                    "bg-primary text-primary dark:text-primary bg-opacity-10"
-                  }`}
-                >
-                  <CoreHRIcon
-                    className={
-                      pathname === "/crm-users"
-                        ? "stroke-primary"
-                        : "dark:stroke-bodydark1 stroke-black"
-                    }
-                  />
-                  CRM Users
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/clients"
-                  className={`hover:bg-primary dark:text-bodydark1 group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-opacity-10 dark:hover:text-white ${
-                    pathname.includes("clients") &&
-                    "bg-primary text-primary dark:text-primary bg-opacity-10"
-                  }`}
-                >
-                  <FinanceIcon
-                    className={
-                      pathname === "/clients"
-                        ? "stroke-primary"
-                        : "dark:stroke-bodydark1 stroke-black"
-                    }
-                  />
-                  Clients
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/betting-monitor"
-                  className={`hover:bg-primary dark:text-bodydark1 group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-opacity-10 dark:hover:text-white ${
-                    pathname.includes("betting-monitor") &&
-                    "bg-primary text-primary dark:text-primary bg-opacity-10"
-                  }`}
-                >
-                  <TaskIcon
-                    className={
-                      pathname === "/betting-monitor"
-                        ? "stroke-primary"
-                        : "dark:stroke-bodydark1 stroke-black"
-                    }
-                  />
-                  Betting Monitor Bonuses
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/bonuses"
-                  className={`hover:bg-primary dark:text-bodydark1 group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-opacity-10 dark:hover:text-white ${
-                    pathname.includes("bonuses") &&
-                    "bg-primary text-primary dark:text-primary bg-opacity-10"
-                  }`}
-                >
-                  <PerformanceIcon
-                    className={
-                      pathname === "/bonuses"
-                        ? "stroke-primary"
-                        : "dark:stroke-bodydark1 stroke-black"
-                    }
-                  />
-                  Bonuses
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/integrations"
-                  className={`hover:bg-primary dark:text-bodydark1 group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-opacity-10 dark:hover:text-white ${
-                    pathname.includes("integrations") &&
-                    "bg-primary text-primary dark:text-primary bg-opacity-10"
-                  }`}
-                >
-                  <PerformanceIcon
-                    className={
-                      pathname === "/integrations"
-                        ? "stroke-primary"
-                        : "dark:stroke-bodydark1 stroke-black"
-                    }
-                  />
-                  Integrations
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/game-settings"
-                  className={`hover:bg-primary dark:text-bodydark1 group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-opacity-10 dark:hover:text-white ${
-                    pathname.includes("game-settings") &&
-                    "bg-primary text-primary dark:text-primary bg-opacity-10"
-                  }`}
-                >
-                  <NotifIcon
-                    className={
-                      pathname === "/game-settings"
-                        ? "stroke-primary"
-                        : "dark:stroke-bodydark1 stroke-black"
-                    }
-                  />
-                  Game Settings
-                </Link>
-              </li>
-              <li>
-                <div className="px-4 py-2">
-                  <button className="bg-primary rounded-md px-4 py-1 text-white">
-                    Help Desk
-                  </button>
-                </div>
-              </li>
+              {sideNavItem.map((item) => {
+                return (
+                  <React.Fragment key={item.pathname}>
+                    {item?.subMenus ? (
+                      <SidebarLinkGroup
+                        activeCondition={pathname === `${item.href}`}
+                      >
+                        {(handleClick, open) => {
+                          return (
+                            <React.Fragment>
+                              <Link
+                                href="#"
+                                className={cn(
+                                  "group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 hover:text-primary dark:text-bodydark1 dark:hover:text-white",
+                                  pathname === `${item.href}` &&
+                                    "bg-primary bg-opacity-10 text-primary dark:text-primary",
+                                )}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  sidebarExpanded
+                                    ? handleClick()
+                                    : setSidebarExpanded(true);
+                                }}
+                              >
+                                <div className="w-5"> {item.icon.icon}</div>
+                                <p className="ml-1">{item.label}</p>
+                                <ChevronDownIcon
+                                  className={cn(
+                                    "absolute right-4 top-1/2 -translate-y-1/2 fill-current",
+                                    open && "rotate-180",
+                                  )}
+                                />
+                              </Link>
+                              <div
+                                className={cn(
+                                  "translate transform overflow-hidden",
+                                  !open && "hidden",
+                                )}
+                              >
+                                <ul className="mb-5.5 mt-4 flex w-full flex-1 flex-col gap-2.5">
+                                  {item.subMenus.map((submenu) => (
+                                    <li key={submenu.pathname}>
+                                      <Link
+                                        href={`${item.href}`}
+                                        className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:text-bodydark1 
+                                        dark:hover:text-white`}
+                                      >
+                                        <p className="ml-4">{submenu.label}</p>
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </React.Fragment>
+                          );
+                        }}
+                      </SidebarLinkGroup>
+                    ) : (
+                      <li key={item.pathname}>
+                        <Link
+                          href={`${item.href}`}
+                          className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:text-bodydark1 dark:hover:text-white ${
+                            pathname === `${item.href}` &&
+                            "bg-primary bg-opacity-10 text-primary dark:text-primary"
+                          }`}
+                        >
+                          <div className="w-5"> {item.icon.icon}</div>
+                          <p className="ml-1">{item.label}</p>
+                        </Link>
+                      </li>
+                    )}
+                  </React.Fragment>
+                );
+              })}
             </ul>
           </div>
         </nav>
