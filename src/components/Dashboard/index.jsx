@@ -29,33 +29,37 @@ export default function Dashboard() {
   };
   return (
     <div>
-      <div className="inline-flex w-full gap-2 pb-5">
-        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white shadow-card hover:shadow-card dark:text-white">
-          Today
-        </button>
-        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white shadow-card  hover:shadow-card dark:text-white">
-          Yesterday
-        </button>
-        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
-          Week
-        </button>
-        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
-          Month
-        </button>
-        <div>
-          <Datepicker
-            placeholder={"Custom"}
-            separator={"to"}
-            value={value}
-            displayFormat={"DD/MM/YY"}
-            onChange={handleValueChange}
-            toggleClassName="absolute text-white right-0 h-full px-3 focus:outline-none"
-            inputClassName="bg-primary rounded-md p-2 text-white placeholder:text-white focus:outline-none w-42 text-xs"
-          />
+      <div className="flex w-full flex-col gap-2 pb-5 sm:flex-row md:flex-row lg:flex-row xl:flex-row 2xl:flex-row">
+        <div className="flex gap-2">
+          <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white shadow-card hover:shadow-card dark:text-white">
+            Today
+          </button>
+          <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white shadow-card  hover:shadow-card dark:text-white">
+            Yesterday
+          </button>
+          <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+            Week
+          </button>
+          <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+            Month
+          </button>
         </div>
-        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
-          All
-        </button>
+        <div className="flex gap-2">
+          <div>
+            <Datepicker
+              placeholder={"Custom"}
+              separator={"to"}
+              value={value}
+              displayFormat={"DD/MM/YY"}
+              onChange={handleValueChange}
+              toggleClassName="absolute text-white right-0 h-full px-3 focus:outline-none"
+              inputClassName="bg-primary rounded-md p-2 text-white placeholder:text-white focus:outline-none w-43 text-xs"
+            />
+          </div>
+          <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+            All
+          </button>
+        </div>
       </div>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-6 2xl:gap-6">
         <CardStats title="Total Deposit" total="$1200.00" chart="Bar">
