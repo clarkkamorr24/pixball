@@ -1,3 +1,4 @@
+"use client";
 import CardStats from "@/components/CardStats";
 import { DepositIcon, DollarIcon } from "@/components/Icons";
 import TotalEarning from "@/components/TotalEarning";
@@ -8,6 +9,8 @@ import ActiveUser from "@/components/ActiveUser";
 import Chat from "@/components/Chat";
 import Products from "@/components/Products";
 import Schedules from "@/components/Schedules";
+import { useState } from "react";
+import Datepicker from "react-tailwindcss-datepicker";
 
 export const metadata = {
   title: "CRM Dashboard",
@@ -15,25 +18,42 @@ export const metadata = {
 };
 
 export default function Dashboard() {
+  const [value, setValue] = useState({
+    startDate: null,
+    endDate: null,
+  });
+
+  const handleValueChange = (newValue) => {
+    console.log("newValue:", newValue);
+    setValue(newValue);
+  };
   return (
     <div>
       <div className="inline-flex w-full gap-2 pb-5">
-        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white shadow-card hover:shadow-card dark:text-white">
+        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white shadow-card hover:shadow-card dark:text-white">
           Today
         </button>
-        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white shadow-card  hover:shadow-card dark:text-white">
+        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white shadow-card  hover:shadow-card dark:text-white">
           Yesterday
         </button>
-        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
           Week
         </button>
-        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
           Month
         </button>
-        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
-          Custom
-        </button>
-        <button className="dark:hover:bg-boxdark rounded bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
+        <div>
+          <Datepicker
+            placeholder={"Custom"}
+            separator={"to"}
+            value={value}
+            displayFormat={"DD/MM/YY"}
+            onChange={handleValueChange}
+            toggleClassName="absolute text-white right-0 h-full px-3 focus:outline-none"
+            inputClassName="bg-primary rounded-md p-2 text-white placeholder:text-white focus:outline-none w-42 text-xs"
+          />
+        </div>
+        <button className="dark:hover:bg-boxdark rounded-lg bg-primary px-3 py-1 text-xs font-medium text-white  shadow-card  hover:shadow-card dark:text-white">
           All
         </button>
       </div>
