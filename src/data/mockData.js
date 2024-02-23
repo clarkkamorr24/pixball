@@ -7,6 +7,7 @@ const mockProjectData = () => {
       assignee: "Assignee",
       status: "Inprogress",
       due_date: "06 Sep 21",
+      subRows: [{}],
     },
     {
       project_name: "Bender Project",
@@ -265,4 +266,109 @@ const mockProductData = () => {
   ];
 };
 
-export { mockProjectData, mockProductData };
+const casinoData = () => {
+  return [
+    {
+      id: 1,
+      name: "Casino 1",
+      domain: "www.casino1.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+    {
+      id: 2,
+      name: "Casino 2",
+      domain: "www.casino2.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+    {
+      id: 3,
+      name: "Casino 3",
+      domain: "www.casino3.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+    {
+      id: 4,
+      name: "Casino 4",
+      domain: "www.casino4.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+    {
+      id: 5,
+      name: "Casino 5",
+      domain: "www.casino5.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+    {
+      id: 6,
+      name: "Casino 6",
+      domain: "www.casino6.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+    {
+      id: 7,
+      name: "Casino 7",
+      domain: "www.casino7.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+    {
+      id: 8,
+      name: "Casino 8",
+      domain: "www.casino8.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+    {
+      id: 9,
+      name: "Casino 9",
+      domain: "www.casino9.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+    {
+      id: 10,
+      name: "Casino 10",
+      domain: "www.casino10.com",
+      turn_over: "$100,876",
+      tickets: 850,
+      license: "License 1",
+      status: "on",
+      updated_at: "Feb 19, 2024 9:02pm",
+    },
+  ];
+};
+
+export { mockProjectData, mockProductData, casinoData };

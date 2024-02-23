@@ -32,29 +32,14 @@ const sideNavItem = [
     pathname: "casinos",
     subMenus: [
       {
-        label: "sub-1",
+        label: "Manage Casino",
         href: "/sub-1",
         pathname: "casino1",
       },
       {
-        label: "sub-2",
+        label: "Licenses",
         href: "/sub-2",
         pathname: "casino2",
-      },
-      {
-        label: "sub-3",
-        href: "/sub-3",
-        pathname: "casino3",
-      },
-      {
-        label: "sub-4",
-        href: "/sub-4",
-        pathname: "casino4",
-      },
-      {
-        label: "sub-5",
-        href: "/sub-5",
-        pathname: "casino5",
       },
     ],
   },
@@ -67,29 +52,19 @@ const sideNavItem = [
     pathname: "crm-users",
     subMenus: [
       {
-        label: "sub-1",
+        label: "Manage Users",
         href: "/sub-1",
         pathname: "crmUser1",
       },
       {
-        label: "sub-2",
+        label: "Roles & Permissions",
         href: "/sub-2",
         pathname: "crmUser2",
       },
       {
-        label: "sub-3",
+        label: "Departments",
         href: "/sub-3",
         pathname: "crmUser3",
-      },
-      {
-        label: "sub-4",
-        href: "/sub-4",
-        pathname: "crmUser4",
-      },
-      {
-        label: "sub-5",
-        href: "/sub-5",
-        pathname: "crmUser5",
       },
     ],
   },

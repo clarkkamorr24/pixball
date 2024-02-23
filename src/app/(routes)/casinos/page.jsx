@@ -1,7 +1,11 @@
-import React from "react";
+import Casino from "@/components/Casinos";
 
 const Casinos = () => {
-  return <div>Casinos</div>;
+  return (
+    <div>
+      <Casino />
+    </div>
+  );
 };
 
 export default Casinos;

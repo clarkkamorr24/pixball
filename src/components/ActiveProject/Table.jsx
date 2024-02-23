@@ -5,6 +5,7 @@ import {
   useReactTable,
   getCoreRowModel,
   getFilteredRowModel,
+  getExpandedRowModel,
   getFacetedRowModel,
   getFacetedUniqueValues,
   getFacetedMinMaxValues,
@@ -19,13 +20,38 @@ import Status from "./TableContent/Status";
 
 const DataTable = () => {
   const [data, setData] = useState(() => mockProjectData());
+  const [expanded, setExpanded] = useState({});
 
   const columns = useMemo(
     () => [
       {
         accessorKey: "project_name",
         header: "Project Name",
-        cell: (props) => props.getValue(),
+        cell: ({ row, getValue }) => (
+          <div
+            style={{
+              // Since rows are flattened by default,
+              // we can use the row.depth property
+              // and paddingLeft to visually indicate the depth
+              // of the row
+              paddingLeft: `${row.depth * 2}rem`,
+            }}
+          >
+            <>
+              {" "}
+              {/* {console.log("ROW", getValue())} */}
+              <button
+                {...{
+                  onClick: () => row.toggleExpanded(!row.getIsExpanded()),
+                  style: { cursor: "pointer" },
+                }}
+              >
+                {row.getIsExpanded() ? "👇" : "👉"}
+              </button>{" "}
+              {getValue()}
+            </>
+          </div>
+        ),
       },
       {
         accessorKey: "project_lead",
@@ -59,6 +85,10 @@ const DataTable = () => {
   const table = useReactTable({
     data,
     columns,
+    state: {
+      expanded,
+    },
+    onExpandedChange: setExpanded,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -66,6 +96,8 @@ const DataTable = () => {
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
+    getExpandedRowModel: getExpandedRowModel(),
+
     debugTable: true,
     debugHeaders: true,
     debugColumns: false,
@@ -118,22 +150,31 @@ const DataTable = () => {
         <tbody>
           {table.getRowModel().rows.map((row) => {
             return (
-              <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <td
-                      scope="row"
-                      key={cell.id}
-                      className="whitespace-nowrap px-4 py-3 text-sm text-black dark:text-white"
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
+              <React.Fragment key={row.id}>
+                <tr key={row.id + "original"}>
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <td
+                        scope="row"
+                        key={cell.id}
+                        className="whitespace-nowrap px-4 py-3 text-sm text-black dark:text-white"
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+                {row.getIsExpanded() ? (
+                  <tr key={row.id + "expanded"}>
+                    <td className="h-60 w-full bg-red px-4" colSpan={6}>
+                      HAHAAHHA SA WAKAS!
                     </td>
-                  );
-                })}
-              </tr>
+                  </tr>
+                ) : null}
+              </React.Fragment>
             );
           })}
         </tbody>

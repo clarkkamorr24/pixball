@@ -38,6 +38,7 @@ const config = {
         warning: "#FF9F00",
         success: "#3AC977",
         shadow: "#2e2e2d",
+        darkGray: "#333333",
       },
       fontSize: {
         "title-xxl": ["44px", "55px"],
