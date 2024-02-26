@@ -1,14 +1,14 @@
 "use client";
-import CardStats from "@/components/CardStats";
 import { DepositIcon, DollarIcon } from "@/components/Icons";
-import TotalEarning from "@/components/TotalEarning";
-import ProjectOverview from "@/components/ProjectOverview";
-import Todo from "@/components/Todo";
-import ActiveProject from "@/components/ActiveProject";
-import ActiveUser from "@/components/ActiveUser";
-import Chat from "@/components/Chat";
-import Products from "@/components/Products";
-import Schedules from "@/components/Schedules";
+import CardStats from "@/components/Dashboard/CardStats";
+import TotalEarning from "@/components/Dashboard/TotalEarning";
+import ProjectOverview from "@/components/Dashboard/ProjectOverview";
+import Todo from "@/components/Dashboard/Todo";
+import ActiveUser from "@/components/Dashboard/ActiveUser";
+import ActiveProject from "@/components/Dashboard/ActiveProject";
+import Chat from "@/components/Dashboard/Chat";
+import Products from "@/components/Dashboard/Products";
+import Schedules from "@/components/Dashboard/Schedules";
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 

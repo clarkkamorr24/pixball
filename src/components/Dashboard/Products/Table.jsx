@@ -1,11 +1,10 @@
 "use client";
 import React, { useMemo, useState } from "react";
-import { mockProjectData } from "@/data/mockData";
+import { mockProductData } from "@/data/mockData";
 import {
   useReactTable,
   getCoreRowModel,
   getFilteredRowModel,
-  getExpandedRowModel,
   getFacetedRowModel,
   getFacetedUniqueValues,
   getFacetedMinMaxValues,
@@ -13,69 +12,40 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import ProjectLead from "./TableContent/ProjectLead";
-import { SortIcon } from "../Icons";
-import Progress from "./TableContent/Progress";
-import Status from "./TableContent/Status";
+import { SortIcon } from "../../Icons";
+import StockCell from "./ProductsContent/StockCell";
+import ProductNameCell from "./ProductsContent/ProductNameCell";
 
 const DataTable = () => {
-  const [data, setData] = useState(() => mockProjectData());
-  const [expanded, setExpanded] = useState({});
+  const [data, setData] = useState(() => mockProductData());
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: "project_name",
-        header: "Project Name",
-        cell: ({ row, getValue }) => (
-          <div
-            style={{
-              // Since rows are flattened by default,
-              // we can use the row.depth property
-              // and paddingLeft to visually indicate the depth
-              // of the row
-              paddingLeft: `${row.depth * 2}rem`,
-            }}
-          >
-            <>
-              {" "}
-              {/* {console.log("ROW", getValue())} */}
-              <button
-                {...{
-                  onClick: () => row.toggleExpanded(!row.getIsExpanded()),
-                  style: { cursor: "pointer" },
-                }}
-              >
-                {row.getIsExpanded() ? "👇" : "👉"}
-              </button>{" "}
-              {getValue()}
-            </>
-          </div>
+        accessorKey: "product_name",
+        header: "Product Name",
+        cell: ProductNameCell,
+      },
+      {
+        accessorKey: "price",
+        header: "Price",
+        cell: (props) => (
+          <span className="text-primary">${props.getValue()}</span>
         ),
       },
       {
-        accessorKey: "project_lead",
-        header: "Project Lead",
-        cell: ProjectLead,
-      },
-      {
-        accessorKey: "progress",
-        header: "Progress",
-        cell: Progress,
-      },
-      {
-        accessorKey: "assignee",
-        header: "Assignee",
+        accessorKey: "orders",
+        header: "Orders",
         cell: (props) => props.getValue(),
       },
       {
-        accessorKey: "status",
-        header: "Status",
-        cell: Status,
+        accessorKey: "stock",
+        header: "Stock",
+        cell: StockCell,
       },
       {
-        accessorKey: "due_date",
-        header: "Due date",
+        accessorKey: "amount",
+        header: "Amount",
         cell: (props) => props.getValue(),
       },
     ],
@@ -85,10 +55,6 @@ const DataTable = () => {
   const table = useReactTable({
     data,
     columns,
-    state: {
-      expanded,
-    },
-    onExpandedChange: setExpanded,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -96,14 +62,12 @@ const DataTable = () => {
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
-    getExpandedRowModel: getExpandedRowModel(),
-
     debugTable: true,
     debugHeaders: true,
     debugColumns: false,
     initialState: {
       pagination: {
-        pageSize: 5,
+        pageSize: 7,
       },
     },
   });
@@ -150,31 +114,22 @@ const DataTable = () => {
         <tbody>
           {table.getRowModel().rows.map((row) => {
             return (
-              <React.Fragment key={row.id}>
-                <tr key={row.id + "original"}>
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <td
-                        scope="row"
-                        key={cell.id}
-                        className="whitespace-nowrap px-4 py-3 text-sm text-black dark:text-white"
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-                {row.getIsExpanded() ? (
-                  <tr key={row.id + "expanded"}>
-                    <td className="h-60 w-full bg-red px-4" colSpan={6}>
-                      HAHAAHHA SA WAKAS!
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => {
+                  return (
+                    <td
+                      scope="row"
+                      key={cell.id}
+                      className="whitespace-nowrap px-4 py-3 text-sm text-black dark:text-white"
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </td>
-                  </tr>
-                ) : null}
-              </React.Fragment>
+                  );
+                })}
+              </tr>
             );
           })}
         </tbody>
@@ -182,7 +137,6 @@ const DataTable = () => {
       <div className="relative flex items-center justify-between gap-2 overflow-x-auto px-4 py-2 text-white">
         <span className="flex items-center gap-1 text-black dark:text-white">
           <div>
-            {/* <td colSpan={20}>Page Rows ({table.getRowModel().rows.length})</td> */}
             Showing {table.getState().pagination.pageIndex + 1} to{" "}
             {table.getRowModel().rows.length} of {table.getPageCount()} entries
           </div>

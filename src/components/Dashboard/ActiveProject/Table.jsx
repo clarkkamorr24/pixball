@@ -1,10 +1,11 @@
 "use client";
 import React, { useMemo, useState } from "react";
-import { mockProductData } from "@/data/mockData";
+import { mockProjectData } from "@/data/mockData";
 import {
   useReactTable,
   getCoreRowModel,
   getFilteredRowModel,
+  getExpandedRowModel,
   getFacetedRowModel,
   getFacetedUniqueValues,
   getFacetedMinMaxValues,
@@ -12,40 +13,69 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { SortIcon } from "../Icons";
-import StockCell from "./ProductsContent/StockCell";
-import ProductNameCell from "./ProductsContent/ProductNameCell";
+import ProjectLead from "./TableContent/ProjectLead";
+import { SortIcon } from "../../Icons";
+import Progress from "./TableContent/Progress";
+import Status from "./TableContent/Status";
 
 const DataTable = () => {
-  const [data, setData] = useState(() => mockProductData());
+  const [data, setData] = useState(() => mockProjectData());
+  const [expanded, setExpanded] = useState({});
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: "product_name",
-        header: "Product Name",
-        cell: ProductNameCell,
-      },
-      {
-        accessorKey: "price",
-        header: "Price",
-        cell: (props) => (
-          <span className="text-primary">${props.getValue()}</span>
+        accessorKey: "project_name",
+        header: "Project Name",
+        cell: ({ row, getValue }) => (
+          <div
+            style={{
+              // Since rows are flattened by default,
+              // we can use the row.depth property
+              // and paddingLeft to visually indicate the depth
+              // of the row
+              paddingLeft: `${row.depth * 2}rem`,
+            }}
+          >
+            <>
+              {" "}
+              {/* {console.log("ROW", getValue())} */}
+              <button
+                {...{
+                  onClick: () => row.toggleExpanded(!row.getIsExpanded()),
+                  style: { cursor: "pointer" },
+                }}
+              >
+                {row.getIsExpanded() ? "👇" : "👉"}
+              </button>{" "}
+              {getValue()}
+            </>
+          </div>
         ),
       },
       {
-        accessorKey: "orders",
-        header: "Orders",
+        accessorKey: "project_lead",
+        header: "Project Lead",
+        cell: ProjectLead,
+      },
+      {
+        accessorKey: "progress",
+        header: "Progress",
+        cell: Progress,
+      },
+      {
+        accessorKey: "assignee",
+        header: "Assignee",
         cell: (props) => props.getValue(),
       },
       {
-        accessorKey: "stock",
-        header: "Stock",
-        cell: StockCell,
+        accessorKey: "status",
+        header: "Status",
+        cell: Status,
       },
       {
-        accessorKey: "amount",
-        header: "Amount",
+        accessorKey: "due_date",
+        header: "Due date",
         cell: (props) => props.getValue(),
       },
     ],
@@ -55,6 +85,10 @@ const DataTable = () => {
   const table = useReactTable({
     data,
     columns,
+    state: {
+      expanded,
+    },
+    onExpandedChange: setExpanded,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -62,12 +96,14 @@ const DataTable = () => {
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
+    getExpandedRowModel: getExpandedRowModel(),
+
     debugTable: true,
     debugHeaders: true,
     debugColumns: false,
     initialState: {
       pagination: {
-        pageSize: 7,
+        pageSize: 5,
       },
     },
   });
@@ -114,22 +150,31 @@ const DataTable = () => {
         <tbody>
           {table.getRowModel().rows.map((row) => {
             return (
-              <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <td
-                      scope="row"
-                      key={cell.id}
-                      className="whitespace-nowrap px-4 py-3 text-sm text-black dark:text-white"
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
+              <React.Fragment key={row.id}>
+                <tr key={row.id + "original"}>
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <td
+                        scope="row"
+                        key={cell.id}
+                        className="whitespace-nowrap px-4 py-3 text-sm text-black dark:text-white"
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+                {row.getIsExpanded() ? (
+                  <tr key={row.id + "expanded"}>
+                    <td className="h-60 w-full bg-red px-4" colSpan={6}>
+                      HAHAAHHA SA WAKAS!
                     </td>
-                  );
-                })}
-              </tr>
+                  </tr>
+                ) : null}
+              </React.Fragment>
             );
           })}
         </tbody>
@@ -137,6 +182,7 @@ const DataTable = () => {
       <div className="relative flex items-center justify-between gap-2 overflow-x-auto px-4 py-2 text-white">
         <span className="flex items-center gap-1 text-black dark:text-white">
           <div>
+            {/* <td colSpan={20}>Page Rows ({table.getRowModel().rows.length})</td> */}
             Showing {table.getState().pagination.pageIndex + 1} to{" "}
             {table.getRowModel().rows.length} of {table.getPageCount()} entries
           </div>
@@ -144,20 +190,20 @@ const DataTable = () => {
 
         <div className="flex gap-5">
           <button
-            className="text-primary cursor-pointer text-xl font-bold"
+            className="cursor-pointer text-xl font-bold text-primary"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             {"<"}
           </button>
           <div className="flex gap-2">
-            <button className="bg-primary rounded-md px-3">
+            <button className="rounded-md bg-primary px-3">
               {table.getState().pagination.pageIndex + 1}
             </button>
           </div>
 
           <button
-            className="text-primary cursor-pointer text-xl font-bold"
+            className="cursor-pointer text-xl font-bold text-primary"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >

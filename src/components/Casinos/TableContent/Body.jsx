@@ -118,97 +118,116 @@ const CasinoDataTable = () => {
   });
 
   return (
-    <div className="relative overflow-x-auto py-4">
-      <table className="w-full text-white">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="">
-              {headerGroup.headers.map((header) => {
-                return (
-                  <th
-                    key={header.id}
-                    colSpan={header.colSpan}
-                    className="bg-dark py-4 text-sm"
-                    scope="col"
-                  >
-                    {header.isPlaceholder ? null : (
-                      <>
-                        {header.id !== "status" ? (
-                          <div
-                            {...{
-                              className: header.column.getCanSort()
-                                ? "cursor-pointer"
-                                : "",
-                              onClick: header.column.getToggleSortingHandler(),
-                            }}
-                            className="inline-flex cursor-pointer items-center gap-1"
-                          >
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
-                            {header.id !== "status" && <SortIcon />}
-                          </div>
-                        ) : (
-                          <div className="inline-flex items-center gap-1">
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
-                            {header.id !== "status" && <SortIcon />}
-                          </div>
-                        )}
-                      </>
-                    )}
-                  </th>
-                );
-              })}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => {
-            return (
-              <React.Fragment key={row.id}>
-                <tr
-                  key={row.id + "original"}
-                  className="border-b border-stroke"
-                >
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <td
-                        scope="row"
-                        key={cell.id}
-                        className={cn(
-                          `whitespace-nowrap border-t border-stroke px-4 py-0 text-xs`,
-                          row.id % 2 == 0
-                            ? "dark:bg-darkGray bg-white text-black dark:text-white"
-                            : "bg-darkGray dark:bg-black",
-                        )}
-                      >
-                        <div className="text-center">
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
+    <div>
+      <div className="relative overflow-x-auto py-4">
+        <table className="w-full text-white">
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id} className="">
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <th
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      className="bg-primary py-4 text-sm dark:bg-dark"
+                      scope="col"
+                    >
+                      {header.isPlaceholder ? null : (
+                        <>
+                          {header.id !== "status" ? (
+                            <div
+                              {...{
+                                className: header.column.getCanSort()
+                                  ? "cursor-pointer"
+                                  : "",
+                                onClick:
+                                  header.column.getToggleSortingHandler(),
+                              }}
+                              className="inline-flex cursor-pointer items-center gap-1"
+                            >
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                              {header.id !== "status" && <SortIcon />}
+                            </div>
+                          ) : (
+                            <div className="inline-flex items-center gap-1">
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                              {header.id !== "status" && <SortIcon />}
+                            </div>
                           )}
-                        </div>
-                      </td>
-                    );
-                  })}
-                </tr>
-                {row.getIsExpanded() ? (
-                  <tr key={row.id + "expanded"}>
-                    <td className="bg-darkGray px-10" colSpan={1}></td>
-                    <td className="bg-darkGray w-full px-2 py-6" colSpan={7}>
-                      <Expand />
-                    </td>
+                        </>
+                      )}
+                    </th>
+                  );
+                })}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => {
+              return (
+                <React.Fragment key={row.id}>
+                  <tr
+                    key={row.id + "original"}
+                    className={cn(
+                      `border-b border-stroke`,
+                      row.id % 2 == 0
+                        ? "bg-white text-black dark:bg-darkGray dark:text-white"
+                        : "bg-primary bg-opacity-20 text-black dark:bg-black dark:text-white",
+                    )}
+                  >
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <td
+                          scope="row"
+                          key={cell.id}
+                          className="cursor-pointer whitespace-nowrap border-t border-stroke px-4 py-0 text-xs"
+                        >
+                          <div className="text-center">
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
+                          </div>
+                        </td>
+                      );
+                    })}
                   </tr>
-                ) : null}
-              </React.Fragment>
-            );
-          })}
-        </tbody>
-      </table>
+                  {row.getIsExpanded() ? (
+                    <tr key={row.id + "expanded"}>
+                      <td
+                        className={cn(
+                          "bg-red px-10",
+                          row.id % 2 == 0
+                            ? "bg-white text-black dark:bg-darkGray dark:text-white"
+                            : "bg-primary bg-opacity-20 dark:bg-black",
+                        )}
+                        colSpan={1}
+                      ></td>
+                      <td
+                        className={cn(
+                          "w-full bg-red px-2 py-6",
+                          row.id % 2 == 0
+                            ? "bg-white text-black dark:bg-darkGray dark:text-white"
+                            : "bg-primary bg-opacity-20 text-black dark:bg-black dark:text-white",
+                        )}
+                        colSpan={7}
+                      >
+                        <Expand />
+                      </td>
+                    </tr>
+                  ) : null}
+                </React.Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       <div className="relative flex items-center justify-between gap-2 overflow-x-auto px-4 py-2 text-white">
         <span className="flex items-center gap-1 text-sm text-black dark:text-white">
           <div>
@@ -217,7 +236,6 @@ const CasinoDataTable = () => {
             {table.getRowModel().rows.length} of {table.getPageCount()} entries
           </div>
         </span>
-
         <div className="flex gap-5">
           <button
             className="cursor-pointer text-xl font-bold text-primary"
@@ -231,7 +249,6 @@ const CasinoDataTable = () => {
               {table.getState().pagination.pageIndex + 1}
             </button>
           </div>
-
           <button
             className="cursor-pointer text-xl font-bold text-primary"
             onClick={() => table.nextPage()}

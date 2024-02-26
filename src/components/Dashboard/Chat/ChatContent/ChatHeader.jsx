@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronDownIcon, NotifIcon } from "../../Icons";
+import { ChevronDownIcon, NotifIcon } from "../../../Icons";
 
 const ChatHeader = () => {
   return (

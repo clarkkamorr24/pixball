@@ -30,13 +30,13 @@ const Geo = () => {
     <div className="col-span-2 inline-flex flex-col gap-2 rounded-md border border-stroke px-4 py-3">
       <div className="flex items-center justify-between">
         <span>Blocked GEOs</span>
-        <div className="cursor-pointer rounded-md bg-primary p-1">
+        <div className="cursor-pointer rounded-md bg-primary p-1 text-white">
           <IoPencil size={15} />
         </div>
       </div>
       <div className="mt-2 flex flex-col gap-4">
-        {countries.map((country, index) => (
-          <div className="flex gap-4" key={index}>
+        {countries.map((country) => (
+          <div className="flex gap-4">
             <span>
               <Image width={25} height={25} src={country.image} alt="flag" />
             </span>

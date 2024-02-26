@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { CheckIcon, DeleteIcon, EditIcon, WarningIcon } from "../Icons";
+import { CheckIcon, DeleteIcon, EditIcon, WarningIcon } from "../../Icons";
 
 const Todo = () => {
   const [isChecked, setIsChecked] = useState(false);
   return (
-    <div className="dark:outline-strokedark outline-stroke rounded-md bg-white py-5 outline outline-1 md:col-span-2 xl:col-span-2 dark:bg-black">
+    <div className="dark:outline-strokedark rounded-md bg-white py-5 outline outline-1 outline-stroke dark:bg-black md:col-span-2 xl:col-span-2">
       <div className="mb-5 flex justify-between px-6">
         <p className="font-semibold">My To Do Items</p>
         <div className="flex gap-2">
@@ -17,7 +17,7 @@ const Todo = () => {
         <ul className="flex flex-col gap-6">
           <li className="border-b pb-4">
             <div className="px-6">
-              <p className="text-warning flex items-center gap-2">
+              <p className="flex items-center gap-2 text-warning">
                 <WarningIcon />
                 Latest to do`s
               </p>
@@ -48,10 +48,10 @@ const Todo = () => {
                   Complete this projects Monday
                 </label>
                 <div className="flex gap-2">
-                  <span className="bg-red cursor-pointer rounded-md bg-opacity-10 p-2">
+                  <span className="cursor-pointer rounded-md bg-red bg-opacity-10 p-2">
                     <DeleteIcon />
                   </span>
-                  <span className="bg-primary cursor-pointer rounded-md bg-opacity-10 p-2">
+                  <span className="cursor-pointer rounded-md bg-primary bg-opacity-10 p-2">
                     <EditIcon />
                   </span>
                 </div>
@@ -61,7 +61,7 @@ const Todo = () => {
           </li>
           <li className="border-b pb-4">
             <div className="px-6">
-              <p className="text-success flex items-center gap-2">
+              <p className="flex items-center gap-2 text-success">
                 <CheckIcon className="stroke-success stroke-2" />
                 Latest finished to do`s
               </p>
@@ -92,10 +92,10 @@ const Todo = () => {
                   Complete this projects Monday
                 </label>
                 <div className="flex gap-2">
-                  <span className="bg-red cursor-pointer rounded-md bg-opacity-10 p-2">
+                  <span className="cursor-pointer rounded-md bg-red bg-opacity-10 p-2">
                     <DeleteIcon />
                   </span>
-                  <span className="bg-primary cursor-pointer rounded-md bg-opacity-10 p-2">
+                  <span className="cursor-pointer rounded-md bg-primary bg-opacity-10 p-2">
                     <EditIcon />
                   </span>
                 </div>
@@ -132,10 +132,10 @@ const Todo = () => {
                   Complete this projects Monday
                 </label>
                 <div className="flex gap-2">
-                  <span className="bg-red cursor-pointer rounded-md bg-opacity-10 p-2">
+                  <span className="cursor-pointer rounded-md bg-red bg-opacity-10 p-2">
                     <DeleteIcon />
                   </span>
-                  <span className="bg-primary cursor-pointer rounded-md bg-opacity-10 p-2">
+                  <span className="cursor-pointer rounded-md bg-primary bg-opacity-10 p-2">
                     <EditIcon />
                   </span>
                 </div>
@@ -172,10 +172,10 @@ const Todo = () => {
                   Complete this projects Monday
                 </label>
                 <div className="flex gap-2">
-                  <span className="bg-red cursor-pointer rounded-md bg-opacity-10 p-2">
+                  <span className="cursor-pointer rounded-md bg-red bg-opacity-10 p-2">
                     <DeleteIcon />
                   </span>
-                  <span className="bg-primary cursor-pointer rounded-md bg-opacity-10 p-2">
+                  <span className="cursor-pointer rounded-md bg-primary bg-opacity-10 p-2">
                     <EditIcon />
                   </span>
                 </div>

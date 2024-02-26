@@ -24,7 +24,7 @@ const Product = () => {
     <div className="col-span-2 inline-flex flex-col gap-2 rounded-md border border-stroke p-2">
       <div className="flex items-center justify-between">
         <span>Products</span>
-        <div className="cursor-pointer rounded-md bg-primary p-1">
+        <div className="cursor-pointer rounded-md bg-primary p-1 text-white">
           <IoPencil size={15} />
         </div>
       </div>

@@ -7,7 +7,7 @@ const Allowed = () => {
       <div className="gap-2 rounded-md border border-stroke p-2">
         <div className="flex items-center justify-between pb-2">
           <h3 className="">Allowed IPS</h3>
-          <div className="cursor-pointer rounded-md bg-primary p-1">
+          <div className="cursor-pointer rounded-md bg-primary p-1 text-white">
             <IoPencil size={15} />
           </div>
         </div>
@@ -16,7 +16,7 @@ const Allowed = () => {
       <div className="h-full gap-2 rounded-md border border-stroke py-2">
         <div className="flex items-center justify-between px-2 pb-2">
           <h3>Deals</h3>
-          <div className="cursor-pointer rounded-md bg-primary p-1">
+          <div className="cursor-pointer rounded-md bg-primary p-1 text-white">
             <IoPencil size={15} />
           </div>
         </div>
