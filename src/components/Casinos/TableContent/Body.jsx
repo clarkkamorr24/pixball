@@ -1,5 +1,6 @@
 "use client";
 import React, { useMemo, useState } from "react";
+import moment from "moment";
 import { ChevronDownIcon, SortIcon } from "@/components/Icons";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { casinoData } from "@/data/mockData";
@@ -19,14 +20,16 @@ import Status from "./Status";
 import Expand from "./Expand";
 import { cn } from "@/lib/utils";
 
-const CasinoDataTable = () => {
+const CasinoDataTable = ({ loading }) => {
+  // const [data, setData] = useState(casinoData?.users);
+  console.log("loading", loading);
   const [data, setData] = useState(() => casinoData());
   const [expanded, setExpanded] = useState({});
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: "id",
+        accessorKey: "_id",
         header: "ID",
         cell: (props) => props.getValue(),
       },
@@ -40,34 +43,34 @@ const CasinoDataTable = () => {
         header: "Domain",
         cell: (props) => props.getValue(),
       },
+      // {
+      //   accessorKey: "turn_over",
+      //   header: "Turnover",
+      //   cell: (props) => props.getValue(),
+      // },
+      // {
+      //   accessorKey: "tickets",
+      //   header: "Tickets",
+      //   cell: (props) => props.getValue(),
+      // },
+      // {
+      //   accessorKey: "license",
+      //   header: "License",
+      //   cell: (props) => props.getValue(),
+      //   disableSortBy: true,
+      // },
       {
-        accessorKey: "turn_over",
-        header: "Turnover",
-        cell: (props) => props.getValue(),
-      },
-      {
-        accessorKey: "tickets",
-        header: "Tickets",
-        cell: (props) => props.getValue(),
-      },
-      {
-        accessorKey: "license",
-        header: "License",
-        cell: (props) => props.getValue(),
-        disableSortBy: true,
-      },
-      {
-        accessorKey: "status",
+        accessorKey: "isActive",
         header: "Status",
         cell: (props) => <Status {...props} />,
         sortable: false,
       },
       {
-        accessorKey: "updated_at",
+        accessorKey: "updatedAt",
         header: "Updated At",
         cell: ({ row, getValue }) => (
           <div className="flex items-center justify-center gap-5">
-            {getValue()}
+            {moment(getValue()).format("lll")}
             <button
               {...{
                 onClick: () => row.toggleExpanded(!row.getIsExpanded()),

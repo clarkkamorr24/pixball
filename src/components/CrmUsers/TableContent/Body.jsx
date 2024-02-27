@@ -15,10 +15,11 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import Status from "./Status";
 import { cn } from "@/lib/utils";
+import Status from "./Status";
 import Online from "./Online";
 import Verified from "./Verified";
+import TwoFA from "./TwoFA";
 
 const CasinoDataTable = () => {
   const [data, setData] = useState(() => crmUsersData());
@@ -94,12 +95,12 @@ const CasinoDataTable = () => {
       {
         accessorKey: "two_fa",
         header: "2FA",
-        cell: (props) => props.getValue(),
+        cell: TwoFA,
       },
       {
         accessorKey: "status",
         header: "Status",
-        cell: (props) => props.getValue(),
+        cell: ({ row, getValue }) => <Status row={row} getValue={getValue} />,
       },
     ],
     [],
@@ -132,22 +133,22 @@ const CasinoDataTable = () => {
   });
 
   return (
-    <div className="relative overflow-x-auto py-4">
-      <table className="w-full text-white">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="">
-              {headerGroup.headers.map((header) => {
-                return (
-                  <th
-                    key={header.id}
-                    colSpan={header.colSpan}
-                    className="bg-primary py-4 text-sm dark:bg-dark"
-                    scope="col"
-                  >
-                    {header.isPlaceholder ? null : (
-                      <>
-                        {header.id !== "status" ? (
+    <div>
+      <div className="relative overflow-x-auto py-4">
+        <table className="w-full text-white">
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <th
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      className="bg-primary px-4 py-4 text-sm dark:bg-dark"
+                      scope="col"
+                    >
+                      {header.isPlaceholder ? null : (
+                        <>
                           <div
                             {...{
                               className: header.column.getCanSort()
@@ -161,60 +162,52 @@ const CasinoDataTable = () => {
                               header.column.columnDef.header,
                               header.getContext(),
                             )}
-                            {header.id !== "status" && <SortIcon />}
+                            <SortIcon />
                           </div>
-                        ) : (
-                          <div className="inline-flex items-center gap-1">
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
-                            {header.id !== "status" && <SortIcon />}
-                          </div>
-                        )}
-                      </>
+                        </>
+                      )}
+                    </th>
+                  );
+                })}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => {
+              return (
+                <React.Fragment key={row.id}>
+                  <tr
+                    key={row.id + "original"}
+                    className={cn(
+                      `border-b border-stroke`,
+                      row.id % 2 == 0
+                        ? "bg-white text-black dark:bg-darkGray dark:text-white"
+                        : "bg-primary bg-opacity-20 text-black dark:bg-black dark:text-white",
                     )}
-                  </th>
-                );
-              })}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => {
-            return (
-              <React.Fragment key={row.id}>
-                <tr
-                  key={row.id + "original"}
-                  className={cn(
-                    `border-b border-stroke`,
-                    row.id % 2 == 0
-                      ? "bg-white text-black dark:bg-darkGray dark:text-white"
-                      : "bg-primary bg-opacity-20 text-black dark:bg-black dark:text-white",
-                  )}
-                >
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <td
-                        scope="row"
-                        key={cell.id}
-                        className="cursor-pointer whitespace-nowrap border-t border-stroke px-4 py-4 text-xs"
-                      >
-                        <div className="text-center">
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
-                          )}
-                        </div>
-                      </td>
-                    );
-                  })}
-                </tr>
-              </React.Fragment>
-            );
-          })}
-        </tbody>
-      </table>
+                  >
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <td
+                          scope="row"
+                          key={cell.id}
+                          className="cursor-pointer whitespace-nowrap border-t border-stroke px-4 py-4 text-xs"
+                        >
+                          <div className="text-center">
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
+                          </div>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                </React.Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       <div className="relative flex items-center justify-between gap-2 overflow-x-auto px-4 py-2 text-white">
         <span className="flex items-center gap-1 text-sm text-black dark:text-white">
           <div>
@@ -223,7 +216,6 @@ const CasinoDataTable = () => {
             {table.getRowModel().rows.length} of {table.getPageCount()} entries
           </div>
         </span>
-
         <div className="flex gap-5">
           <button
             className="cursor-pointer text-xl font-bold text-primary"
@@ -237,7 +229,6 @@ const CasinoDataTable = () => {
               {table.getState().pagination.pageIndex + 1}
             </button>
           </div>
-
           <button
             className="cursor-pointer text-xl font-bold text-primary"
             onClick={() => table.nextPage()}

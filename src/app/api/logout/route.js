@@ -1,8 +1,6 @@
-import axios from "axios";
 import { NextResponse } from "next/server";
 
 export async function POST(request, res) {
-  console.log("Res", res);
   try {
     const body = await request.json();
     const url = `${process.env.NEXT_PUBLIC_PIXBALL_URL}/admin/logout`;
@@ -10,8 +8,14 @@ export async function POST(request, res) {
       "Content-Type": "application/json",
     };
 
-    const response = await axios.post(url, body, { headers });
-    console.log("user", response.data);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body),
+    });
+
+    const data = await response.json();
+    console.log("USER", data);
 
     return NextResponse.json(
       { message: "Successfully Logout" },

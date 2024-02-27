@@ -408,8 +408,8 @@ const crmUsersData = () => {
       created_at: "unknown",
       updated_at: "unknown",
       last_seen: "Feb, 20 2024 14:04",
-      two_fa: "active",
-      status: "active",
+      two_fa: "disabled",
+      status: "disabled",
     },
     {
       id: 3,
@@ -427,8 +427,8 @@ const crmUsersData = () => {
       created_at: "unknown",
       updated_at: "unknown",
       last_seen: "Feb, 20 2024 14:04",
-      two_fa: "active",
-      status: "active",
+      two_fa: "disabled",
+      status: "disabled",
     },
     {
       id: 4,
@@ -446,7 +446,7 @@ const crmUsersData = () => {
       created_at: "unknown",
       updated_at: "unknown",
       last_seen: "Feb, 20 2024 14:04",
-      two_fa: "active",
+      two_fa: "disabled",
       status: "active",
     },
     {
@@ -465,7 +465,7 @@ const crmUsersData = () => {
       created_at: "unknown",
       updated_at: "unknown",
       last_seen: "Feb, 20 2024 14:04",
-      two_fa: "active",
+      two_fa: "disabled",
       status: "active",
     },
   ];

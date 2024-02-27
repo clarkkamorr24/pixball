@@ -1,39 +1,39 @@
-import axios from "axios";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
   providers: [
-    //Manual Login
+    // Manual Login
     CredentialsProvider({
       name: "Credentials",
       credentials: {},
       async authorize(credentials, req) {
         try {
           const url = `${process.env.NEXT_PUBLIC_PIXBALL_URL}/admin/login`;
-          const user = await axios
-            .post(
-              url,
-              {
-                email: credentials.email,
-                password: credentials.password,
-              },
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              },
-            )
-            .then((data) => data.data);
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: credentials.email,
+              password: credentials.password,
+            }),
+          });
 
-          const userDetails = {
-            ...user.data,
-            ...user.tokens,
-          };
+          if (response.ok) {
+            const user = await response.json();
 
-          return userDetails;
+            const userDetails = {
+              ...user.data,
+              ...user.tokens,
+            };
+            return userDetails;
+          } else {
+            throw new Error("Invalid credentials");
+          }
         } catch (error) {
-          throw new Error(error.response.data.message);
+          throw new Error("Invalid email or password");
         }
       },
     }),

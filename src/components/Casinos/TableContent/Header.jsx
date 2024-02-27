@@ -1,5 +1,5 @@
+"use client";
 import React, { useState } from "react";
-import { ReportIcon } from "@/components/Icons";
 import CreateCasino from "./CreateCasino";
 
 const CasinoTableHeader = () => {

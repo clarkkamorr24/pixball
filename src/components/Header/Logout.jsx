@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 
@@ -14,12 +13,16 @@ const Logout = () => {
       router.push("/login");
     });
 
-    await axios
-      .post(`api/logout`, {
+    await fetch(`/api/logout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         email: session.email,
         refreshToken: session.refresh.token,
-      })
-      .then((data) => data.status);
+      }),
+    });
   };
 
   return (
