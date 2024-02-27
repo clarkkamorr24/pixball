@@ -29,7 +29,7 @@ const CasinoDataTable = ({ loading }) => {
   const columns = useMemo(
     () => [
       {
-        accessorKey: "_id",
+        accessorKey: "id",
         header: "ID",
         cell: (props) => props.getValue(),
       },
@@ -43,22 +43,22 @@ const CasinoDataTable = ({ loading }) => {
         header: "Domain",
         cell: (props) => props.getValue(),
       },
-      // {
-      //   accessorKey: "turn_over",
-      //   header: "Turnover",
-      //   cell: (props) => props.getValue(),
-      // },
-      // {
-      //   accessorKey: "tickets",
-      //   header: "Tickets",
-      //   cell: (props) => props.getValue(),
-      // },
-      // {
-      //   accessorKey: "license",
-      //   header: "License",
-      //   cell: (props) => props.getValue(),
-      //   disableSortBy: true,
-      // },
+      {
+        accessorKey: "turn_over",
+        header: "Turnover",
+        cell: (props) => props.getValue(),
+      },
+      {
+        accessorKey: "tickets",
+        header: "Tickets",
+        cell: (props) => props.getValue(),
+      },
+      {
+        accessorKey: "license",
+        header: "License",
+        cell: (props) => props.getValue(),
+        disableSortBy: true,
+      },
       {
         accessorKey: "isActive",
         header: "Status",
