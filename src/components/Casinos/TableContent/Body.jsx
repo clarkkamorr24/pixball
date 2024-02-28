@@ -20,16 +20,15 @@ import Status from "./Status";
 import Expand from "./Expand";
 import { cn } from "@/lib/utils";
 
-const CasinoDataTable = ({ loading }) => {
-  // const [data, setData] = useState(casinoData?.users);
-  console.log("loading", loading);
-  const [data, setData] = useState(() => casinoData());
+const CasinoDataTable = ({ casinoData, loading }) => {
+  const [data, setData] = useState(casinoData?.users);
+  // const [data, setData] = useState(() => casinoData());
   const [expanded, setExpanded] = useState({});
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: "id",
+        accessorKey: "_id",
         header: "ID",
         cell: (props) => props.getValue(),
       },

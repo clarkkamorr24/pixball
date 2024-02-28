@@ -39,7 +39,7 @@ const DdGeo = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute top-15 z-99 flex w-full flex-col items-start gap-2 rounded-md bg-sky-300  dark:bg-stroke">
+        <div className="absolute top-15 z-99 flex w-full flex-col items-start gap-2 rounded-md bg-secondary  dark:bg-stroke">
           <ul className="w-full ">
             {countries.map((country) => (
               <li

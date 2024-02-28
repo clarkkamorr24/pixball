@@ -10,8 +10,11 @@ const CasinoTableHeader = () => {
         <h3 className="text-sm font-semibold text-black dark:text-white">
           List of Casino(s)
         </h3>
-        <div className="flex rounded-md bg-primary px-4 py-2 text-sm text-white">
-          <button onClick={() => setShow(true)}>Create New Casino</button>
+        <div
+          className="flex cursor-pointer rounded-md bg-primary px-3 py-2 text-xs text-white"
+          onClick={() => setShow(true)}
+        >
+          <button className="outline-none outline">Create New Casino</button>
         </div>
       </div>
       {show && <CreateCasino setShow={setShow} />}

@@ -1,6 +1,6 @@
 "use client";
 import React, { Fragment, useState } from "react";
-import ModalForm from "./ModalForm";
+import ModalForm from "../Modal";
 
 const CasinoTableHeader = () => {
   const [show, setShow] = useState(false);
@@ -11,10 +11,10 @@ const CasinoTableHeader = () => {
           List of Users
         </h3>
         <div
-          className="flex cursor-pointer rounded-md bg-primary px-4 py-2 text-sm text-white"
+          className="flex cursor-pointer rounded-md bg-primary px-3 py-2 text-xs text-white first-letter:px-3"
           onClick={() => setShow(true)}
         >
-          <button>Create New User</button>
+          <button className="outline-none outline">Create New User</button>
         </div>
       </div>
       {show && <ModalForm setShow={setShow} />}

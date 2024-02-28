@@ -5,7 +5,7 @@ import DarkModeSwitcher from "./DarkModeSwitcher";
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   return (
-    <header className="z-999 h-15 drop-shadow-2 dark:bg-gray sticky top-0 flex w-full bg-white pr-4 dark:drop-shadow-lg ">
+    <header className="sticky top-0 z-999 flex h-15 w-full bg-white pr-4 drop-shadow-2 dark:bg-gray dark:drop-shadow-lg ">
       <div className="flex flex-grow items-center justify-between">
         <div className="flex items-center">
           <button
@@ -14,9 +14,9 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
               e.stopPropagation();
               setSidebarOpen(!sidebarOpen);
             }}
-            className="dark:border-strokedark dark:bg-boxdark z-99999 outline-stroke dark:bg-dark flex justify-center rounded-sm p-1.5 shadow-sm outline outline-1 lg:hidden"
+            className="dark:border-strokedark dark:bg-boxdark z-99999 flex justify-center rounded-sm p-1.5 shadow-sm outline outline-1 outline-stroke dark:bg-dark lg:hidden"
           >
-            <span className="h-11.5 w-10.5 relative top-3 block cursor-pointer">
+            <span className="relative top-3 block h-11.5 w-10.5 cursor-pointer">
               <span className="du-block absolute right-0 h-full w-full">
                 <span
                   className={`relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-[0] duration-200 ease-in-out dark:bg-white ${
@@ -50,7 +50,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           </button>
           <div className="hidden sm:block">
             <form method="">
-              <div className="dark:shadow-0 shadow-2 dark:bg-lightGray relative ml-2 rounded-md p-2">
+              <div className="dark:shadow-0 relative ml-2 rounded-md p-2 shadow-2 dark:bg-lightGray">
                 <button className="absolute left-0 top-1/2 -translate-y-1/2 p-2">
                   <svg
                     className="fill-stroke hover:fill-primary dark:fill-bodydark dark:hover:fill-primary"
@@ -77,23 +77,23 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
                 <input
                   type="text"
                   placeholder="Type to search..."
-                  className="placeholder-mediumGray xl:w-125 w-full bg-transparent pl-9 pr-4 font-medium focus:outline-none"
+                  className="w-full bg-transparent pl-9 pr-4 text-sm font-medium placeholder-mediumGray focus:outline-none xl:w-125"
                 />
               </div>
             </form>
           </div>
         </div>
 
-        <div className="2xsm:gap-4 flex items-center gap-3">
-          <ul className="2xsm:gap-6 flex items-center gap-2">
+        <div className="flex items-center gap-3 2xsm:gap-4">
+          <ul className="flex items-center gap-2 2xsm:gap-6">
             <DarkModeSwitcher />
-            <NotifIcon className="hover:stroke-primary dark:hover:stroke-primary cursor-pointer stroke-black dark:stroke-white" />
-            <SettingsIcon className="hover:stroke-primary dark:hover:stroke-primary cursor-pointer stroke-black dark:stroke-white" />
-            <MessageIcon className="hover:stroke-primary dark:hover:stroke-primary cursor-pointer stroke-black dark:stroke-white" />
+            <NotifIcon className="cursor-pointer stroke-black hover:stroke-primary dark:stroke-white dark:hover:stroke-primary" />
+            <SettingsIcon className="cursor-pointer stroke-black hover:stroke-primary dark:stroke-white dark:hover:stroke-primary" />
+            <MessageIcon className="cursor-pointer stroke-black hover:stroke-primary dark:stroke-white dark:hover:stroke-primary" />
             {/* seperator */}
             <Logout />
-            <div className="border-mediumGray flex border-r p-1.5">
-              <span className="h-11.5 relative top-3 cursor-pointer"></span>
+            <div className="flex border-r border-mediumGray p-1.5">
+              <span className="relative top-3 h-11.5 cursor-pointer"></span>
             </div>
           </ul>
           <DropdownUser />

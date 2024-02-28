@@ -15,7 +15,6 @@ export async function POST(request, res) {
     });
 
     const data = await response.json();
-    console.log("USER", data);
 
     return NextResponse.json(
       { message: "Successfully Logout" },

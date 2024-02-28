@@ -23,13 +23,13 @@ const Status = ({ row, getValue }) => {
         {isOpen && (
           <div className="absolute right-3 top-9 z-99999 flex w-30 flex-col items-start rounded-md bg-primary outline outline-1 outline-white dark:bg-darkGray dark:outline-stroke">
             <span
-              className="flex w-full rounded-tl-md rounded-tr-md p-2 hover:bg-sky-300 dark:hover:bg-primary"
+              className="flex w-full rounded-tl-md rounded-tr-md p-2 hover:bg-secondary dark:hover:bg-primary"
               onClick={() => console.log("id", row.original.id)}
             >
               Edit
             </span>
             <span className="h-0.5 w-full rounded-bl-md rounded-br-md border-b border-white px-2 dark:border-stroke"></span>
-            <span className="flex w-full p-2 hover:bg-sky-300 dark:hover:bg-primary">
+            <span className="flex w-full p-2 hover:bg-secondary dark:hover:bg-primary">
               Delete
             </span>
           </div>

@@ -108,7 +108,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                 }}
                               >
                                 <div className="w-5"> {item.icon.icon}</div>
-                                <p className="ml-1">{item.label}</p>
+                                <p className="ml-1 text-sm">{item.label}</p>
                                 <ChevronDownIcon
                                   className={cn(
                                     "absolute right-4 top-1/2 -translate-y-1/2 fill-current",
@@ -130,7 +130,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                         className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:text-bodydark1 
                                         dark:hover:text-white`}
                                       >
-                                        <p className="ml-4">{submenu.label}</p>
+                                        <p className="ml-4 text-xs">
+                                          {submenu.label}
+                                        </p>
                                       </Link>
                                     </li>
                                   ))}
@@ -150,7 +152,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           }`}
                         >
                           <div className="w-5"> {item.icon.icon}</div>
-                          <p className="ml-1">{item.label}</p>
+                          <p className="ml-1 text-sm">{item.label}</p>
                         </Link>
                       </li>
                     )}

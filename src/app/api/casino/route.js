@@ -13,7 +13,6 @@ export async function GET(request) {
   const res = await fetch(url, { headers: headers });
 
   const users = await res.json();
-  console.log("users", users);
 
   return NextResponse.json({ users });
 }

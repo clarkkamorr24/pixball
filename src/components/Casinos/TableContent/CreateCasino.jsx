@@ -48,7 +48,7 @@ const CreateCasino = ({ setShow }) => {
           <input
             type="text"
             placeholder="Amount..."
-            className="rounded-md border-none bg-sky-300 p-3 placeholder:text-white focus:border-none focus:outline-none dark:bg-dark"
+            className="rounded-md border-none bg-secondary p-3 placeholder:text-white focus:border-none focus:outline-none dark:bg-dark"
           />
         </div>
         <DdLanguages />
@@ -103,7 +103,7 @@ const CreateCasino = ({ setShow }) => {
           <input
             type="text"
             placeholder="Search..."
-            className="rounded-md border-none bg-sky-300 p-3 placeholder:text-white focus:border-none focus:outline-none dark:bg-dark"
+            className="rounded-md border-none bg-secondary p-3 placeholder:text-white focus:border-none focus:outline-none dark:bg-dark"
           />
           <div className="flex gap-3">
             <span className="cursor-pointer rounded-md border p-3 active:bg-primary">

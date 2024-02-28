@@ -4,11 +4,10 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 
 const DropdownUser = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const trigger = useRef(null);
   const dropdown = useRef(null);
-
   const name = `${session?.firstName} ${session?.lastName}`;
   const email = session?.email;
 
@@ -53,12 +52,23 @@ const DropdownUser = () => {
             alt="User"
           />
         </span>
-        <span className="hidden text-right lg:block">
-          <span className="block text-sm font-medium text-black dark:text-white">
-            {name}
-          </span>
-          <span className="block text-xs">{email}</span>
-        </span>
+        <div className="hidden text-right lg:block">
+          {status === "loading" || session === null ? (
+            <div className="flex animate-pulse flex-col items-end gap-2">
+              <span className="block h-2.5 w-22.5 rounded-sm bg-mediumGray bg-opacity-25 text-xs font-medium text-black dark:text-white"></span>
+              <span className="block h-2.5 w-32.5 rounded-sm bg-mediumGray bg-opacity-25 text-xs font-medium text-black dark:text-white"></span>
+            </div>
+          ) : (
+            <div className="">
+              <span className="block text-xs font-medium text-black dark:text-white">
+                {name}
+              </span>
+              <span className="block text-xs text-black dark:text-white">
+                {email}
+              </span>
+            </div>
+          )}
+        </div>
       </Link>
     </div>
   );

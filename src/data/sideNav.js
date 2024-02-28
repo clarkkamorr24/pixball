@@ -17,7 +17,7 @@ import {
 const sideNavItem = [
   {
     icon: {
-      icon: <IoGridOutline size={20} />,
+      icon: <IoGridOutline size={17} />,
     },
     label: "Dashboard",
     href: "/",
@@ -25,7 +25,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoCashOutline size={20} />,
+      icon: <IoCashOutline size={17} />,
     },
     label: "Casinos",
     href: "/casinos",
@@ -45,7 +45,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoPeopleOutline size={20} />,
+      icon: <IoPeopleOutline size={17} />,
     },
     label: "CRM Users",
     href: "/crm-users",
@@ -57,20 +57,15 @@ const sideNavItem = [
         pathname: "crmUser1",
       },
       {
-        label: "Roles & Permissions",
-        href: "/sub-2",
-        pathname: "crmUser2",
-      },
-      {
         label: "Departments",
-        href: "/sub-3",
+        href: "/sub-2",
         pathname: "crmUser3",
       },
     ],
   },
   {
     icon: {
-      icon: <IoPersonOutline size={20} />,
+      icon: <IoPersonOutline size={17} />,
     },
     label: "Clients",
     href: "/clients",
@@ -105,7 +100,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoPersonOutline size={20} />,
+      icon: <IoPersonOutline size={17} />,
     },
     label: "Agents",
     href: "/agents",
@@ -140,7 +135,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoMedicalOutline size={20} />,
+      icon: <IoMedicalOutline size={17} />,
     },
     label: "Affiliates",
     href: "/affiliates",
@@ -175,7 +170,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoTvOutline size={20} />,
+      icon: <IoTvOutline size={17} />,
     },
     label: "Live Monitor",
     href: "/live-monitor",
@@ -210,7 +205,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoCalculatorOutline size={20} />,
+      icon: <IoCalculatorOutline size={17} />,
     },
     label: "Finance",
     href: "/finance",
@@ -245,7 +240,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoLogoBitcoin size={20} />,
+      icon: <IoLogoBitcoin size={17} />,
     },
     label: "Bonuses",
     href: "/bonuses",
@@ -280,7 +275,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoBasketballOutline size={20} />,
+      icon: <IoBasketballOutline size={17} />,
     },
     label: "Sports Settings",
     href: "/sport-settings",
@@ -315,7 +310,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoGameControllerOutline size={20} />,
+      icon: <IoGameControllerOutline size={17} />,
     },
     label: "Games Settings",
     href: "/game-settings",
@@ -350,7 +345,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoSparklesOutline size={20} />,
+      icon: <IoSparklesOutline size={17} />,
     },
     label: "CRM",
     href: "/crm",
@@ -385,7 +380,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoMailOutline size={20} />,
+      icon: <IoMailOutline size={17} />,
     },
     label: "CMS",
     href: "/cms",
@@ -420,7 +415,7 @@ const sideNavItem = [
   },
   {
     icon: {
-      icon: <IoRocketOutline size={20} />,
+      icon: <IoRocketOutline size={17} />,
     },
     label: "Integrations",
     href: "/integrations",
