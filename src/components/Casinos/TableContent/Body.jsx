@@ -125,13 +125,16 @@ const CasinoDataTable = ({ casinoData, loading }) => {
         <table className="w-full text-white">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="">
+              <tr
+                key={headerGroup.id}
+                className="shadow-md shadow-stroke drop-shadow-lg"
+              >
                 {headerGroup.headers.map((header) => {
                   return (
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
-                      className="bg-primary py-4 text-sm dark:bg-dark"
+                      className="bg-primary py-4 text-xs dark:bg-dark"
                       scope="col"
                     >
                       {header.isPlaceholder ? null : (
@@ -177,10 +180,10 @@ const CasinoDataTable = ({ casinoData, loading }) => {
                   <tr
                     key={row.id + "original"}
                     className={cn(
-                      `border-b border-stroke`,
+                      `border-b border-stroke `,
                       row.id % 2 == 0
-                        ? "bg-white text-black dark:bg-darkGray dark:text-white"
-                        : "bg-primary bg-opacity-20 text-black dark:bg-black dark:text-white",
+                        ? "bg-white text-black hover:bg-orange-200 dark:bg-darkGray dark:text-white dark:hover:bg-orange-200 dark:hover:text-black"
+                        : "bg-primary bg-opacity-20 text-black hover:bg-orange-200 dark:bg-black dark:text-white dark:hover:bg-orange-200 dark:hover:text-black",
                     )}
                   >
                     {row.getVisibleCells().map((cell) => {
