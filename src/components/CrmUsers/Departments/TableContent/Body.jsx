@@ -1,9 +1,7 @@
 "use client";
 import React, { useMemo, useState } from "react";
-import moment from "moment";
-import { ChevronDownIcon, SortIcon } from "@/components/Icons";
-import { IoChevronDown, IoChevronUp } from "react-icons/io5";
-import { casinoData } from "@/data/mockData";
+import { SortIcon } from "@/components/Icons";
+import { departmentsData } from "@/data/departments";
 import {
   useReactTable,
   getCoreRowModel,
@@ -16,78 +14,50 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import Status from "./Status";
-import Expand from "./Expand";
 import { cn } from "@/lib/utils";
+import Status from "./Status";
+import UpdatedAt from "./UpdatedAt";
 
-const CasinoDataTable = ({ casinoData, loading }) => {
-  const [data, setData] = useState(casinoData?.users);
-  // const [data, setData] = useState(() => casinoData());
+const CasinoDataTable = () => {
+  const [data, setData] = useState(() => departmentsData());
   const [expanded, setExpanded] = useState({});
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: "_id",
+        accessorKey: "id",
         header: "ID",
         cell: (props) => props.getValue(),
       },
       {
-        accessorKey: "name",
-        header: "Name",
+        accessorKey: "department",
+        header: "Password",
         cell: (props) => props.getValue(),
       },
       {
-        accessorKey: "domain",
-        header: "Domain",
+        accessorKey: "role",
+        header: "Role",
         cell: (props) => props.getValue(),
       },
       {
-        accessorKey: "turn_over",
-        header: "Turnover",
+        accessorKey: "casino",
+        header: "Casino",
         cell: (props) => props.getValue(),
       },
       {
-        accessorKey: "tickets",
-        header: "Tickets",
-        cell: (props) => props.getValue(),
-      },
-      {
-        accessorKey: "license",
-        header: "License",
-        cell: (props) => props.getValue(),
-        disableSortBy: true,
-      },
-      {
-        accessorKey: "isActive",
+        accessorKey: "status",
         header: "Status",
         cell: ({ row, getValue }) => <Status row={row} getValue={getValue} />,
-        sortable: false,
       },
       {
-        accessorKey: "updatedAt",
+        accessorKey: "created_at",
+        header: "Created At",
+        cell: (props) => props.getValue(),
+      },
+      {
+        accessorKey: "updated_at",
         header: "Updated At",
-        cell: ({ row, getValue }) => (
-          <div className="flex items-center justify-center gap-5">
-            {moment(getValue()).format("lll")}
-            <button
-              {...{
-                onClick: () => row.toggleExpanded(!row.getIsExpanded()),
-                style: { cursor: "pointer" },
-              }}
-            >
-              {row.getIsExpanded() ? (
-                <div className="rounded-full bg-primary p-1 text-white">
-                  <IoChevronUp size={15} />
-                </div>
-              ) : (
-                <div className="rounded-full bg-primary p-1 text-white">
-                  <IoChevronDown size={15} />
-                </div>
-              )}
-            </button>
-          </div>
-        ),
+        cell: UpdatedAt,
       },
     ],
     [],
@@ -134,37 +104,26 @@ const CasinoDataTable = ({ casinoData, loading }) => {
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
-                      className="bg-primary py-4 text-xs dark:bg-dark"
+                      className="bg-primary px-4 py-4 text-xs dark:bg-dark"
                       scope="col"
                     >
                       {header.isPlaceholder ? null : (
                         <>
-                          {header.id !== "status" ? (
-                            <div
-                              {...{
-                                className: header.column.getCanSort()
-                                  ? "cursor-pointer"
-                                  : "",
-                                onClick:
-                                  header.column.getToggleSortingHandler(),
-                              }}
-                              className="inline-flex cursor-pointer items-center gap-1"
-                            >
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                              {header.id !== "status" && <SortIcon />}
-                            </div>
-                          ) : (
-                            <div className="inline-flex items-center gap-1">
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                              {header.id !== "status" && <SortIcon />}
-                            </div>
-                          )}
+                          <div
+                            {...{
+                              className: header.column.getCanSort()
+                                ? "cursor-pointer"
+                                : "",
+                              onClick: header.column.getToggleSortingHandler(),
+                            }}
+                            className="inline-flex cursor-pointer items-center gap-1"
+                          >
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                            <SortIcon />
+                          </div>
                         </>
                       )}
                     </th>
@@ -191,7 +150,7 @@ const CasinoDataTable = ({ casinoData, loading }) => {
                         <td
                           scope="row"
                           key={cell.id}
-                          className="cursor-pointer whitespace-nowrap border-t border-stroke px-4 py-0 text-xs"
+                          className="cursor-pointer whitespace-nowrap border-t border-stroke px-4 py-3 text-xs"
                         >
                           <div className="text-center">
                             {flexRender(
@@ -203,30 +162,6 @@ const CasinoDataTable = ({ casinoData, loading }) => {
                       );
                     })}
                   </tr>
-                  {row.getIsExpanded() ? (
-                    <tr key={row.id + "expanded"}>
-                      <td
-                        className={cn(
-                          "bg-red px-10",
-                          row.id % 2 == 0
-                            ? "bg-white text-black dark:bg-darkGray dark:text-white"
-                            : "bg-primary bg-opacity-20 dark:bg-black",
-                        )}
-                        colSpan={1}
-                      ></td>
-                      <td
-                        className={cn(
-                          "w-full bg-red px-2 py-6",
-                          row.id % 2 == 0
-                            ? "bg-white text-black dark:bg-darkGray dark:text-white"
-                            : "bg-primary bg-opacity-20 text-black dark:bg-black dark:text-white",
-                        )}
-                        colSpan={7}
-                      >
-                        <Expand />
-                      </td>
-                    </tr>
-                  ) : null}
                 </React.Fragment>
               );
             })}
@@ -249,11 +184,9 @@ const CasinoDataTable = ({ casinoData, loading }) => {
           >
             {"<"}
           </button>
-          <div className="flex gap-2">
-            <button className="rounded-md bg-primary px-3">
-              {table.getState().pagination.pageIndex + 1}
-            </button>
-          </div>
+          <button className="rounded-md bg-primary px-3 text-xs">
+            {table.getState().pagination.pageIndex + 1}
+          </button>
           <button
             className="cursor-pointer text-xl font-bold text-primary"
             onClick={() => table.nextPage()}

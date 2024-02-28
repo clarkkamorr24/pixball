@@ -390,7 +390,7 @@ const crmUsersData = () => {
       updated_at: "unknown",
       last_seen: "Feb, 20 2024 14:04",
       two_fa: "active",
-      status: "active",
+      status: true,
     },
     {
       id: 2,
@@ -409,7 +409,7 @@ const crmUsersData = () => {
       updated_at: "unknown",
       last_seen: "Feb, 20 2024 14:04",
       two_fa: "disabled",
-      status: "disabled",
+      status: true,
     },
     {
       id: 3,
@@ -428,7 +428,7 @@ const crmUsersData = () => {
       updated_at: "unknown",
       last_seen: "Feb, 20 2024 14:04",
       two_fa: "disabled",
-      status: "disabled",
+      status: true,
     },
     {
       id: 4,
@@ -447,7 +447,7 @@ const crmUsersData = () => {
       updated_at: "unknown",
       last_seen: "Feb, 20 2024 14:04",
       two_fa: "disabled",
-      status: "active",
+      status: false,
     },
     {
       id: 5,
@@ -466,7 +466,7 @@ const crmUsersData = () => {
       updated_at: "unknown",
       last_seen: "Feb, 20 2024 14:04",
       two_fa: "disabled",
-      status: "active",
+      status: false,
     },
   ];
 };

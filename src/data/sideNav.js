@@ -53,12 +53,12 @@ const sideNavItem = [
     subMenus: [
       {
         label: "Manage Users",
-        href: "/sub-1",
+        href: "/crm-users/manage-users",
         pathname: "crmUser1",
       },
       {
         label: "Departments",
-        href: "/sub-2",
+        href: "/crm-users/departments",
         pathname: "crmUser3",
       },
     ],

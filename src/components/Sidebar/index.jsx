@@ -126,7 +126,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                   {item.subMenus.map((submenu) => (
                                     <li key={submenu.pathname}>
                                       <Link
-                                        href={`${item.href}`}
+                                        href={`${item.href === "/crm-users" ? submenu.href : item.href}`}
                                         className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-primary hover:bg-opacity-10 dark:text-bodydark1 
                                         dark:hover:text-white`}
                                       >

@@ -38,12 +38,12 @@ const SkeletonLoading = () => {
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-center gap-2 px-4 py-10 text-black dark:text-white">
+      <div className="flex items-center justify-center gap-2 px-4 py-20 text-black dark:text-white">
         <div
-          className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          className="inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
           role="status"
         ></div>
-        <span className="animate-pulse">Fetching Data . . .</span>
+        <span className="animate-pulse text-xs">Fetching Data . . .</span>
       </div>
     </div>
   );

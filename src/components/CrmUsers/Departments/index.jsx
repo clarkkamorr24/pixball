@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "./TableContent";
 
-const CrmUsers = () => {
+const Departments = () => {
   return (
     <div>
       <Table />
@@ -9,4 +9,4 @@ const CrmUsers = () => {
   );
 };
 
-export default CrmUsers;
+export default Departments;

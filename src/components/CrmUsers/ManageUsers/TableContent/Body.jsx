@@ -1,7 +1,6 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import { SortIcon } from "@/components/Icons";
-import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { crmUsersData } from "@/data/mockData";
 import {
   useReactTable,
@@ -138,13 +137,16 @@ const CasinoDataTable = () => {
         <table className="w-full text-white">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
+              <tr
+                key={headerGroup.id}
+                className="shadow-md shadow-stroke drop-shadow-lg"
+              >
                 {headerGroup.headers.map((header) => {
                   return (
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
-                      className="bg-primary px-4 py-4 text-sm dark:bg-dark"
+                      className="bg-primary px-4 py-4 text-xs dark:bg-dark"
                       scope="col"
                     >
                       {header.isPlaceholder ? null : (
@@ -179,10 +181,10 @@ const CasinoDataTable = () => {
                   <tr
                     key={row.id + "original"}
                     className={cn(
-                      `border-b border-stroke`,
+                      `border-b border-stroke `,
                       row.id % 2 == 0
-                        ? "bg-white text-black dark:bg-darkGray dark:text-white"
-                        : "bg-primary bg-opacity-20 text-black dark:bg-black dark:text-white",
+                        ? "bg-white text-black hover:bg-orange-200 dark:bg-darkGray dark:text-white dark:hover:bg-orange-200 dark:hover:text-black"
+                        : "bg-primary bg-opacity-20 text-black hover:bg-orange-200 dark:bg-black dark:text-white dark:hover:bg-orange-200 dark:hover:text-black",
                     )}
                   >
                     {row.getVisibleCells().map((cell) => {
@@ -190,7 +192,7 @@ const CasinoDataTable = () => {
                         <td
                           scope="row"
                           key={cell.id}
-                          className="cursor-pointer whitespace-nowrap border-t border-stroke px-4 py-4 text-xs"
+                          className="cursor-pointer whitespace-nowrap border-t border-stroke px-4 py-3 text-xs"
                         >
                           <div className="text-center">
                             {flexRender(
@@ -209,7 +211,7 @@ const CasinoDataTable = () => {
         </table>
       </div>
       <div className="relative flex items-center justify-between gap-2 overflow-x-auto px-4 py-2 text-white">
-        <span className="flex items-center gap-1 text-sm text-black dark:text-white">
+        <span className="flex items-center gap-1 text-xs text-black dark:text-white">
           <div>
             {/* <td colSpan={20}>Page Rows ({table.getRowModel().rows.length})</td> */}
             Showing {table.getState().pagination.pageIndex + 1} to{" "}
@@ -224,11 +226,9 @@ const CasinoDataTable = () => {
           >
             {"<"}
           </button>
-          <div className="flex gap-2">
-            <button className="rounded-md bg-primary px-3">
-              {table.getState().pagination.pageIndex + 1}
-            </button>
-          </div>
+          <button className="rounded-md bg-primary px-3 text-xs">
+            {table.getState().pagination.pageIndex + 1}
+          </button>
           <button
             className="cursor-pointer text-xl font-bold text-primary"
             onClick={() => table.nextPage()}
