@@ -44,7 +44,7 @@ const DropdownUser = () => {
         className="flex items-center gap-4"
         href="#"
       >
-        <span className="w-12 rounded-full">
+        <span className="hidden w-12 rounded-full md:block lg:block xl:block">
           <Image
             width={40}
             height={40}
@@ -52,7 +52,7 @@ const DropdownUser = () => {
             alt="User"
           />
         </span>
-        <div className="hidden text-right lg:block">
+        <div className="hidden text-right md:block lg:block xl:block">
           {status === "loading" || session === null ? (
             <div className="flex animate-pulse flex-col items-end gap-2">
               <span className="block h-2.5 w-22.5 rounded-sm bg-mediumGray bg-opacity-25 text-xs font-medium text-black dark:text-white"></span>

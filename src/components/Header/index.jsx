@@ -11,26 +11,18 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
     <header className="sticky top-0 z-999 flex h-15 w-full bg-white pr-4 drop-shadow-2 dark:bg-gray dark:drop-shadow-lg ">
       <div className="flex flex-grow items-center justify-between">
         <div className="flex items-center">
+          {/* <div className="mr-1 flex  h-15 w-10 bg-red">a</div> */}
           <button
             aria-controls="sidebar"
             onClick={(e) => {
               e.stopPropagation();
               setSidebarOpen(!sidebarOpen);
             }}
-            className="z-99999 flex justify-center rounded-sm p-1.5 lg:hidden"
+            className="z-99999 flex h-15 w-20 items-center justify-start rounded-sm lg:hidden"
           >
-            <button
-              aria-controls="sidebar"
-              onClick={(e) => {
-                e.stopPropagation();
-                setSidebarOpen(!sidebarOpen);
-              }}
-              className="z-99999 flex justify-center rounded-sm lg:hidden"
-            >
-              <span className="">
-                <Image src={HamburgerIcon} height={40} width={60} alt="logo" />
-              </span>
-            </button>
+            <span className="">
+              <Image src={HamburgerIcon} height={50} alt="logo" />
+            </span>
           </button>
           <div className="hidden sm:block">
             <form method="">
@@ -68,7 +60,7 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-3 2xsm:gap-4">
+        <div className="flex h-15 items-center gap-3 2xsm:gap-4">
           <ul className="flex items-center gap-2 2xsm:gap-6">
             <DarkModeSwitcher />
             <NotifIcon className="cursor-pointer stroke-black hover:stroke-primary dark:stroke-white dark:hover:stroke-primary" />
@@ -76,7 +68,7 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
             <MessageIcon className="cursor-pointer stroke-black hover:stroke-primary dark:stroke-white dark:hover:stroke-primary" />
             {/* seperator */}
             <Logout />
-            <div className="flex border-r border-mediumGray p-1.5">
+            <div className="hidden h-15 border-r border-mediumGray md:block lg:block xl:block">
               <span className="relative top-3 h-11.5 cursor-pointer"></span>
             </div>
           </ul>
