@@ -5,8 +5,7 @@ import loginValidate from "@/lib/validate";
 import { useFormik } from "formik";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { FcGoogle } from "react-icons/fc";
-import { PrimaryIcon } from "@/components/Logos";
+import { HamburgerIcon } from "@/components/Logos";
 import Image from "next/image";
 
 const Form = () => {
@@ -39,22 +38,25 @@ const Form = () => {
       router.push("/login");
     }
   }
-  //google login
-  async function handleGoogleSignIn() {
-    signIn("google", { callbackUrl: "http://localhost:3000" });
-  }
+
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
         <div className="mb-5 flex flex-col justify-center text-white">
           <span className="flex justify-center">
-            <Image src={PrimaryIcon} height={200} width={170} alt="logo" />
+            <Image
+              src={HamburgerIcon}
+              alt="logo"
+              height={100}
+              width={100}
+              className="h-25 w-25"
+            />
           </span>
           {error !== "" && (
             <span className="block pt-2 text-center text-red">{error}</span>
           )}
         </div>
-        <div className="-mx-3 mb-6 flex flex-wrap">
+        <div className="-mx-3 flex flex-wrap">
           <div className="mb-6 w-full px-3 md:w-full">
             <label
               className="text-gray-700 mb-2 block text-sm tracking-wide text-stroke"
@@ -130,24 +132,6 @@ const Form = () => {
           </div>
         </div>
       </form>
-      {/* <div className="mt-2 flex w-full items-center gap-2 px-3">
-        <div className="block h-[0.25px] w-full bg-stroke"></div>
-        <span className="text-center text-lg text-stroke">OR</span>
-        <div className="block h-[0.25px] w-full bg-stroke"></div>
-      </div>
-      <div className="mt-2 flex w-full items-center px-3">
-        <button
-          className="flex w-full items-center justify-center gap-3 rounded-lg bg-dark py-4 font-semibold text-stroke"
-          onClick={handleGoogleSignIn}
-        >
-          <FcGoogle />
-          Login with Google
-        </button>
-      </div> */}
-      <div className="mt-6 flex w-full items-center justify-center gap-2 px-3 text-xs">
-        <p className="text-stroke">Dont have an account?</p>{" "}
-        <a className="cursor-pointer text-primary">Sign up</a>
-      </div>
     </div>
   );
 };
