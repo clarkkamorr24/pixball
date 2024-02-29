@@ -1,12 +1,10 @@
 import React from "react";
 import EmployeeHeader from "./EmployeeContent/EmployeeHeader";
 
-const Employees = () => {
+export default function Employees() {
   return (
     <div>
       <EmployeeHeader />
     </div>
   );
-};
-
-export default Employees;
+}

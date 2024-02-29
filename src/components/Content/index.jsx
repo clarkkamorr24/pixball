@@ -5,7 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Providers from "@/components/Provider";
 
-const Content = ({ props }) => {
+export default function Content({ props }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div>
@@ -22,6 +22,4 @@ const Content = ({ props }) => {
       </Providers>
     </div>
   );
-};
-
-export default Content;
+}

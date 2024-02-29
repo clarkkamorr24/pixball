@@ -31,7 +31,7 @@ const Form = () => {
       callbackUrl: "/",
     });
     if (status?.ok) {
-      router.push("/");
+      router.replace("/");
     } else {
       setError(status?.error);
       router.push("/login");
@@ -120,7 +120,7 @@ const Form = () => {
           <div className="mb-6 w-full px-3 md:w-full">
             <button
               type="submit"
-              className="hover:bg-blue-500 block w-full appearance-none rounded-lg bg-primary px-3 py-3 font-bold leading-tight text-white focus:outline-none"
+              className="block w-full appearance-none rounded-lg bg-primary px-3 py-3 font-bold leading-tight text-white hover:bg-blue-500 focus:outline-none"
             >
               Log in
             </button>

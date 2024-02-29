@@ -3,11 +3,13 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BackIcon, ChevronDownIcon } from "../Icons";
-import { sideNavItem } from "@/data/sideNav";
 import SidebarLinkGroup from "./SidebarLinkGroup";
+import { sideNavItem } from "@/data/sideNav";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { PrimaryIcon } from "../Logos";
 
-const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const pathname = usePathname();
 
   const trigger = useRef(null);
@@ -63,8 +65,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-center bg-white px-6 py-1.5 drop-shadow-2 dark:bg-gray">
-        <span className="text-5xl font-bold text-black dark:text-bodydark1 ">
-          CRM
+        <span className="">
+          <Image src={PrimaryIcon} height={200} width={110} alt="logo" />
         </span>
 
         <button
@@ -165,6 +167,4 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </div>
     </aside>
   );
-};
-
-export default Sidebar;
+}

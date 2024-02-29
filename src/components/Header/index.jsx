@@ -2,8 +2,9 @@ import DropdownUser from "./DropdownUser";
 import { MessageIcon, NotifIcon, SettingsIcon } from "../Icons";
 import Logout from "./Logout";
 import DarkModeSwitcher from "./DarkModeSwitcher";
+import React from "react";
 
-const Header = ({ sidebarOpen, setSidebarOpen }) => {
+export default function Header({ sidebarOpen, setSidebarOpen }) {
   return (
     <header className="sticky top-0 z-999 flex h-15 w-full bg-white pr-4 drop-shadow-2 dark:bg-gray dark:drop-shadow-lg ">
       <div className="flex flex-grow items-center justify-between">
@@ -101,6 +102,4 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
       </div>
     </header>
   );
-};
-
-export default Header;
+}

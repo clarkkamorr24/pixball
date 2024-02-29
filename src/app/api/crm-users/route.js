@@ -8,7 +8,8 @@ export async function GET(req, res) {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  const url = `${process.env.NEXT_PUBLIC_PIXBALL_URL}/casino`;
+  const url = `${process.env.NEXT_PUBLIC_PIXBALL_URL}/admin/crm-users`;
+
   try {
     const res = await fetch(url, { headers: headers });
 

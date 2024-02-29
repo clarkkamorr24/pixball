@@ -139,7 +139,7 @@ const CasinoDataTable = () => {
                   <tr
                     key={row.id + "original"}
                     className={cn(
-                      `border-b border-stroke `,
+                      "border-b border-stroke",
                       row.id % 2 == 0
                         ? "bg-white text-black hover:bg-orange-200 dark:bg-darkGray dark:text-white dark:hover:bg-orange-200 dark:hover:text-black"
                         : "bg-primary bg-opacity-20 text-black hover:bg-orange-200 dark:bg-black dark:text-white dark:hover:bg-orange-200 dark:hover:text-black",

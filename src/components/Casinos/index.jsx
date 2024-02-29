@@ -40,7 +40,8 @@ const casino = [
     icon: <IoThumbsDownOutline size={20} />,
   },
 ];
-const Casinos = () => {
+
+export default function Casinos() {
   return (
     <div className="flex flex-col gap-4">
       <Sort />
@@ -54,6 +55,4 @@ const Casinos = () => {
       </div>
     </div>
   );
-};
-
-export default Casinos;
+}

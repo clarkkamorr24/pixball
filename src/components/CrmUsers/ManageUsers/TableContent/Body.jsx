@@ -1,7 +1,8 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import { SortIcon } from "@/components/Icons";
-import { crmUsersData } from "@/data/mockData";
+import moment from "moment";
+// import { crmUsersData } from "@/data/mockData";
 import {
   useReactTable,
   getCoreRowModel,
@@ -20,19 +21,19 @@ import Online from "./Online";
 import Verified from "./Verified";
 import TwoFA from "./TwoFA";
 
-const CasinoDataTable = () => {
-  const [data, setData] = useState(() => crmUsersData());
+const CasinoDataTable = ({ crmUsersData, loading }) => {
+  const [data, setData] = useState(crmUsersData?.users);
   const [expanded, setExpanded] = useState({});
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: "first_name",
+        accessorKey: "firstName",
         header: "First Name",
         cell: (props) => props.getValue(),
       },
       {
-        accessorKey: "last_name",
+        accessorKey: "lastName",
         header: "Last Name",
         cell: (props) => props.getValue(),
       },
@@ -47,7 +48,7 @@ const CasinoDataTable = () => {
         cell: (props) => props.getValue(),
       },
       {
-        accessorKey: "casino",
+        accessorKey: "type",
         header: "Casino",
         cell: (props) => props.getValue(),
       },
@@ -63,38 +64,38 @@ const CasinoDataTable = () => {
       },
       {
         accessorKey: "country",
-        header: "Ips",
+        header: "Country",
         cell: (props) => props.getValue(),
       },
       {
-        accessorKey: "is_online",
+        accessorKey: "isOnline",
         header: "Is Online",
         cell: Online,
       },
       {
-        accessorKey: "verified_email",
+        accessorKey: "isEmailVerified",
         header: "Verified Email",
         cell: Verified,
       },
       {
-        accessorKey: "created_at",
+        accessorKey: "createdAt",
         header: "Created At",
-        cell: (props) => props.getValue(),
+        cell: (props) => <span>{moment(props.getValue()).format("lll")}</span>,
       },
       {
-        accessorKey: "updated_at",
+        accessorKey: "updatedAt",
         header: "Updated At",
-        cell: (props) => props.getValue(),
+        cell: (props) => <span>{moment(props.getValue()).format("lll")}</span>,
       },
       {
-        accessorKey: "last_seen",
+        accessorKey: "lastSeen",
         header: "Last Seen",
-        cell: (props) => props.getValue(),
+        cell: (props) => <span>{moment(props.getValue()).format("lll")}</span>,
       },
       {
         accessorKey: "two_fa",
         header: "2FA",
-        cell: TwoFA,
+        cell: (props) => props.getValue(),
       },
       {
         accessorKey: "status",

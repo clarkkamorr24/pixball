@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import SkeletonLoading from "@/components/ui/SkeletonLoading";
 import CasinoTableHeader from "./Header";
 import CasinoDataTable from "./Body";
-import SkeletonLoading from "./Skeleton";
 
 const getData = async () => {
   try {
-    const response = await fetch("/api/casino");
+    const response = await fetch("/api/casino", { method: "GET" });
     if (!response.ok) {
       throw new Error("Failed to fetch data");
     }

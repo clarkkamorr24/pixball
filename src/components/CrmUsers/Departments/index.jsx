@@ -1,12 +1,10 @@
 import React from "react";
 import Table from "./TableContent";
 
-const Departments = () => {
+export default function Departments() {
   return (
     <div>
       <Table />
     </div>
   );
-};
-
-export default Departments;
+}

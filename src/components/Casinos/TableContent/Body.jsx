@@ -1,9 +1,9 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import moment from "moment";
-import { ChevronDownIcon, SortIcon } from "@/components/Icons";
+import { SortIcon } from "@/components/Icons";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
-import { casinoData } from "@/data/mockData";
+
 import {
   useReactTable,
   getCoreRowModel,
@@ -22,7 +22,6 @@ import { cn } from "@/lib/utils";
 
 const CasinoDataTable = ({ casinoData, loading }) => {
   const [data, setData] = useState(casinoData?.users);
-  // const [data, setData] = useState(() => casinoData());
   const [expanded, setExpanded] = useState({});
 
   const columns = useMemo(

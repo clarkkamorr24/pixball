@@ -10,7 +10,7 @@ const Logout = () => {
 
   const handleLogout = async () => {
     await signOut({ redirect: false }).then(() => {
-      router.push("/login");
+      router.replace("/login");
     });
 
     await fetch(`/api/logout`, {
