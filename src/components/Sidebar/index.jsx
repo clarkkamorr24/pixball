@@ -65,9 +65,9 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-center bg-white px-6 py-1.5 drop-shadow-2 dark:bg-gray">
-        <span className="">
-          <Image src={PrimaryIcon} height={200} width={110} alt="logo" />
-        </span>
+        <Link href="/">
+          <Image src={PrimaryIcon} height={200} width={113} alt="logo" />
+        </Link>
 
         <button
           ref={trigger}

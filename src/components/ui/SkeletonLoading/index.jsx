@@ -8,9 +8,15 @@ const SkeletonLoading = () => {
           role="status"
         ></div>
         <span className="text-md">Fetching Data</span>
-        <span className="animate-bounce text-2xl font-bold">.</span>
-        <span className="animate-bounce text-2xl font-bold">.</span>
-        <span className="animate-bounce text-2xl font-bold">.</span>
+        <span className="animate-[bounce_1s_infinite_50ms] text-2xl font-bold">
+          .
+        </span>
+        <span className="animate-[bounce_1s_infinite_75ms] text-2xl font-bold">
+          .
+        </span>
+        <span className="animate-[bounce_1s_infinite_100ms] text-2xl font-bold">
+          .
+        </span>
       </div>
     </div>
   );
