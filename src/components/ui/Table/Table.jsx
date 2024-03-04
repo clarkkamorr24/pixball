@@ -1,8 +1,7 @@
 "use client";
-import React, { useMemo, useState } from "react";
-import moment from "moment";
+import React, { useState } from "react";
 import { SortIcon } from "@/components/Icons";
-import { IoChevronDown, IoChevronUp } from "react-icons/io5";
+import { cn } from "@/lib";
 
 import {
   useReactTable,
@@ -16,81 +15,9 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import Status from "./Status";
-import Expand from "./Expand";
-import { cn } from "@/lib/utils";
 
-const CasinoDataTable = ({ casinoData, loading }) => {
-  const [data, setData] = useState(casinoData?.users);
+export const Table = ({ data, columns, expand }) => {
   const [expanded, setExpanded] = useState({});
-
-  const columns = useMemo(
-    () => [
-      {
-        accessorKey: "_id",
-        header: "ID",
-        cell: (props) => props.getValue(),
-      },
-      {
-        accessorKey: "name",
-        header: "Name",
-        cell: (props) => props.getValue(),
-      },
-      {
-        accessorKey: "domain",
-        header: "Domain",
-        cell: (props) => props.getValue(),
-      },
-      {
-        accessorKey: "turn_over",
-        header: "Turnover",
-        cell: (props) => props.getValue(),
-      },
-      {
-        accessorKey: "tickets",
-        header: "Tickets",
-        cell: (props) => props.getValue(),
-      },
-      {
-        accessorKey: "license",
-        header: "License",
-        cell: (props) => props.getValue(),
-        disableSortBy: true,
-      },
-      {
-        accessorKey: "isActive",
-        header: "Status",
-        cell: ({ row, getValue }) => <Status row={row} getValue={getValue} />,
-        sortable: false,
-      },
-      {
-        accessorKey: "updatedAt",
-        header: "Updated At",
-        cell: ({ row, getValue }) => (
-          <div className="flex items-center justify-center gap-5">
-            {moment(getValue()).format("lll")}
-            <button
-              {...{
-                onClick: () => row.toggleExpanded(!row.getIsExpanded()),
-                style: { cursor: "pointer" },
-              }}
-            >
-              {row.getIsExpanded() ? (
-                <div className="rounded-full bg-primary p-1 text-white">
-                  <IoChevronUp size={15} />
-                </div>
-              ) : (
-                <div className="rounded-full bg-primary p-1 text-white">
-                  <IoChevronDown size={15} />
-                </div>
-              )}
-            </button>
-          </div>
-        ),
-      },
-    ],
-    [],
-  );
 
   const table = useReactTable({
     data,
@@ -133,37 +60,28 @@ const CasinoDataTable = ({ casinoData, loading }) => {
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
-                      className="bg-primary py-4 text-xs dark:bg-dark"
+                      className={cn(
+                        "bg-primary py-4 text-xs dark:bg-dark",
+                        columns.length > 8 && "px-6",
+                      )}
                       scope="col"
                     >
                       {header.isPlaceholder ? null : (
                         <>
-                          {header.id !== "status" ? (
-                            <div
-                              {...{
-                                className: header.column.getCanSort()
-                                  ? "cursor-pointer"
-                                  : "",
-                                onClick:
-                                  header.column.getToggleSortingHandler(),
-                              }}
-                              className="inline-flex cursor-pointer items-center gap-1"
-                            >
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
+                          <div
+                            onClick={header.column.getToggleSortingHandler()}
+                            className="inline-flex cursor-pointer items-center gap-1"
+                          >
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                            <span>
+                              {header.id !== "actions" && (
+                                <SortIcon size={20} />
                               )}
-                              {header.id !== "status" && <SortIcon />}
-                            </div>
-                          ) : (
-                            <div className="inline-flex items-center gap-1">
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                              {header.id !== "status" && <SortIcon />}
-                            </div>
-                          )}
+                            </span>
+                          </div>
                         </>
                       )}
                     </th>
@@ -179,7 +97,7 @@ const CasinoDataTable = ({ casinoData, loading }) => {
                   <tr
                     key={row.id + "original"}
                     className={cn(
-                      `border-b border-stroke `,
+                      `border-b border-stroke`,
                       row.id % 2 == 0
                         ? "bg-white text-black hover:bg-orange-200 dark:bg-darkGray dark:text-white dark:hover:bg-orange-200 dark:hover:text-black"
                         : "bg-primary bg-opacity-20 text-black hover:bg-orange-200 dark:bg-black dark:text-white dark:hover:bg-orange-200 dark:hover:text-black",
@@ -190,7 +108,7 @@ const CasinoDataTable = ({ casinoData, loading }) => {
                         <td
                           scope="row"
                           key={cell.id}
-                          className="cursor-pointer whitespace-nowrap border-t border-stroke px-4 py-0 text-xs"
+                          className="cursor-pointer whitespace-nowrap border-t border-stroke px-4 py-3 text-xs"
                         >
                           <div className="text-center">
                             {flexRender(
@@ -222,7 +140,7 @@ const CasinoDataTable = ({ casinoData, loading }) => {
                         )}
                         colSpan={7}
                       >
-                        <Expand />
+                        {expand}
                       </td>
                     </tr>
                   ) : null}
@@ -265,5 +183,3 @@ const CasinoDataTable = ({ casinoData, loading }) => {
     </div>
   );
 };
-
-export default CasinoDataTable;

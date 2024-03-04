@@ -1,47 +1,93 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import SkeletonLoading from "@/components/ui/SkeletonLoading";
+import { useMemo } from "react";
+import moment from "moment";
 import CasinoTableHeader from "./Header";
-import CasinoDataTable from "./Body";
+import Expand from "./Expand";
+import { useGetData } from "@/hooks";
+import { Table, Toggle, SkeletonLoading } from "@/components/ui";
+import { IoChevronUp } from "react-icons/io5";
 
-const getData = async () => {
-  try {
-    const response = await fetch("/api/casino", { method: "GET" });
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
+const TableContent = () => {
+  const { data, isLoading } = useGetData("/api/casino");
 
-const Table = () => {
-  const [apiData, setApiData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getData();
-      setApiData(data);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
+  const columns = useMemo(
+    () => [
+      {
+        accessorKey: "_id",
+        header: "ID",
+        cell: (props) => props.getValue(),
+      },
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: (props) => props.getValue(),
+      },
+      {
+        accessorKey: "domain",
+        header: "Domain",
+        cell: (props) => props.getValue(),
+      },
+      {
+        accessorKey: "turn_over",
+        header: "Turnover",
+        cell: (props) => props.getValue(),
+      },
+      {
+        accessorKey: "tickets",
+        header: "Tickets",
+        cell: (props) => props.getValue(),
+      },
+      {
+        accessorKey: "license",
+        header: "License",
+        cell: (props) => props.getValue(),
+        disableSortBy: true,
+      },
+      {
+        accessorKey: "isActive",
+        header: "Status",
+        cell: ({ row, getValue }) => <Toggle row={row} getValue={getValue} />,
+        sortable: false,
+      },
+      {
+        accessorKey: "updatedAt",
+        header: "Updated At",
+        cell: ({ row, getValue }) => (
+          <div className="flex items-center justify-center gap-5">
+            {moment(getValue()).format("lll")}
+            <button
+              {...{
+                onClick: () => row.toggleExpanded(!row.getIsExpanded()),
+                style: { cursor: "pointer" },
+              }}
+            >
+              {row.getIsExpanded() ? (
+                <div className="rounded-full bg-primary p-1 text-white duration-300 ease-in ">
+                  <IoChevronUp size={15} />
+                </div>
+              ) : (
+                <div className="rotate-180 rounded-full bg-primary p-1 text-white duration-300 ease-in">
+                  <IoChevronUp size={15} />
+                </div>
+              )}
+            </button>
+          </div>
+        ),
+      },
+    ],
+    [],
+  );
 
   return (
     <div className="dark:outline-strokedark flex flex-col rounded-md bg-white pt-7.5 outline outline-1 outline-stroke dark:bg-black md:col-span-2 xl:col-span-3">
       <CasinoTableHeader />
-      {loading ? (
+      {isLoading ? (
         <SkeletonLoading />
       ) : (
-        <CasinoDataTable casinoData={apiData} loading={loading} />
+        <Table data={data.users} columns={columns} expand={<Expand />} />
       )}
     </div>
   );
 };
 
-export default Table;
+export default TableContent;

@@ -1,4 +1,4 @@
-export default function loginValidate(values) {
+export const loginValidate = (values) => {
   const errors = {};
 
   if (!values.email) {
@@ -13,9 +13,9 @@ export default function loginValidate(values) {
   }
 
   return errors;
-}
+};
 
-export function registerValidate(values) {
+export const registerValidate = (values) => {
   const errors = {};
 
   if (!values.username) {
@@ -45,9 +45,9 @@ export function registerValidate(values) {
   }
 
   return errors;
-}
+};
 
-export function OtpValidate(values) {
+export const OtpValidate = (values) => {
   const errors = {};
   if (Object.values(values.otp).some((data) => data === "")) {
     errors.otp = true;
@@ -55,9 +55,9 @@ export function OtpValidate(values) {
     errors.otp = false;
   }
   return errors;
-}
+};
 
-export function modalValidate(values) {
+export const modalValidate = (values) => {
   const errors = {};
 
   if (!values.firstname) {
@@ -79,4 +79,4 @@ export function modalValidate(values) {
   }
 
   return errors;
-}
+};

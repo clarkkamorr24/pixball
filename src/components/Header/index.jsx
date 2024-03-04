@@ -1,12 +1,15 @@
 import DropdownUser from "./DropdownUser";
-import { MessageIcon, NotifIcon, SettingsIcon } from "../Icons";
 import Logout from "./Logout";
-import DarkModeSwitcher from "./DarkModeSwitcher";
 import React from "react";
 import Image from "next/image";
+import { useSidebarStore } from "@/lib";
 import { HamburgerIcon } from "../Logos";
+import { MessageIcon, NotifIcon, SettingsIcon } from "../Icons";
+import DarkModeSwitcher from "./DarkModeSwitcher";
 
-export default function Header({ sidebarOpen, setSidebarOpen }) {
+export default function Header() {
+  const { sidebarOpen, setSidebarOpen } = useSidebarStore();
+
   return (
     <header className="sticky top-0 z-999 flex h-15 w-full bg-white pr-4 drop-shadow-2 dark:bg-gray dark:drop-shadow-lg ">
       <div className="flex flex-grow items-center justify-between">
@@ -18,10 +21,10 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
               e.stopPropagation();
               setSidebarOpen(!sidebarOpen);
             }}
-            className="z-99999 flex h-15 w-20 items-center justify-start rounded-sm lg:hidden"
+            className="z-99999 flex h-15 w-20 items-center justify-start rounded-sm outline-none lg:hidden"
           >
             <span className="">
-              <Image src={HamburgerIcon} height={50} alt="logo" />
+              <Image src={HamburgerIcon} height={50} width={50} alt="logo" />
             </span>
           </button>
           <div className="hidden sm:block">

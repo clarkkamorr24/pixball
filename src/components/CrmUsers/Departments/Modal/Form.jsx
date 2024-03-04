@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { EyeCloseIcon, EyeOpenIcon } from "@/components/Icons";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
-import { modalValidate } from "@/lib/validate";
+import { modalValidate } from "@/lib";
 import DdCasino from "../Dropdowns/DdCasino";
 import DdDepartment from "../Dropdowns/DdDepartment";
 import DdCountry from "../Dropdowns/DdCountry";

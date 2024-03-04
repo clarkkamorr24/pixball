@@ -3,7 +3,7 @@ import React from "react";
 import { IoStarOutline } from "react-icons/io5";
 import { IoThumbsUpOutline } from "react-icons/io5";
 import { IoThumbsDownOutline } from "react-icons/io5";
-import Table from "./TableContent";
+import TableContent from "./TableContent";
 import Sort from "./Sort";
 
 const casino = [
@@ -51,7 +51,7 @@ export default function Casinos() {
         ))}
       </div>
       <div>
-        <Table />
+        <TableContent />
       </div>
     </div>
   );

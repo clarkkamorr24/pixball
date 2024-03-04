@@ -1,10 +1,10 @@
 import React from "react";
-import Table from "./TableContent";
+import TableContent from "./TableContent";
 
 export default function ManageUsers() {
   return (
     <div>
-      <Table />
+      <TableContent />
     </div>
   );
 }

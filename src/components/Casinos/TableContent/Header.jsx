@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import CreateCasino from "./CreateCasino";
+import CasinoForm from "./Form";
+import { Button } from "@/components/ui";
 
 const CasinoTableHeader = () => {
   const [show, setShow] = useState(false);
@@ -10,14 +11,13 @@ const CasinoTableHeader = () => {
         <h3 className="text-sm font-semibold text-black dark:text-white">
           List of Casino(s)
         </h3>
-        <div
-          className="flex cursor-pointer rounded-md bg-primary px-3 py-2 text-xs text-white"
+        <Button
           onClick={() => setShow(true)}
-        >
-          <button className="outline-none outline">Create New Casino</button>
-        </div>
+          label="Create New Casinos"
+          type="button"
+        />
       </div>
-      {show && <CreateCasino setShow={setShow} />}
+      {show && <CasinoForm setShow={setShow} />}
     </div>
   );
 };

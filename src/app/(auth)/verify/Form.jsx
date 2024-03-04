@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { useFormik, Formik } from "formik";
-import { OtpValidate } from "@/lib/validate";
+import { OtpValidate } from "@/lib";
 // import { useSession } from "next-auth/react";
 
 const Form = () => {

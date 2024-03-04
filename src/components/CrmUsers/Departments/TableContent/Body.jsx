@@ -1,7 +1,7 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import { SortIcon } from "@/components/Icons";
-import { departmentsData } from "@/data/departments";
+import { departmentsData } from "@/data";
 import {
   useReactTable,
   getCoreRowModel,
@@ -14,7 +14,7 @@ import {
   getSortedRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib";
 import Status from "./Status";
 import UpdatedAt from "./UpdatedAt";
 

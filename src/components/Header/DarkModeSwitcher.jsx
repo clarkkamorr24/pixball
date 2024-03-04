@@ -1,17 +1,11 @@
 import useColorMode from "@/hooks/useColorMode";
-import { cn } from "@/lib/utils";
 
 const DarkModeSwitcher = () => {
   const [colorMode, setColorMode] = useColorMode();
 
   return (
     <li>
-      <label
-        className={cn(
-          "relative m-0 block h-6 w-12 rounded-full",
-          colorMode === "dark" ? "bg-primary" : "bg-stroke",
-        )}
-      >
+      <label className="relative m-0 block h-6 w-12 rounded-full bg-stroke dark:bg-primary">
         <input
           type="checkbox"
           onChange={() => {
@@ -21,12 +15,7 @@ const DarkModeSwitcher = () => {
           }}
           className="dur absolute top-0 z-50 m-0 h-full w-full cursor-pointer opacity-0"
         />
-        <span
-          className={cn(
-            "absolute left-[4px] top-1/2 flex h-4.5 w-5 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full bg-white shadow-switcher duration-75 ease-linear",
-            colorMode === "dark" && "!right-[3px] !translate-x-full",
-          )}
-        >
+        <span className="absolute left-[4px] top-1/2 flex h-4.5 w-5 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full bg-white shadow-switcher duration-75 ease-linear dark:!right-[3px] dark:!translate-x-full">
           <span className="dark:hidden">
             <svg
               width="12"

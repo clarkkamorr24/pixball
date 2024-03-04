@@ -1,15 +1,16 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { BackIcon, ChevronDownIcon } from "../Icons";
-import SidebarLinkGroup from "./SidebarLinkGroup";
-import { sideNavItem } from "@/data/sideNav";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { sideNavItem } from "@/data";
+import { useSidebarStore, cn } from "@/lib";
+import { BackIcon, ChevronDownIcon } from "../Icons";
 import { PrimaryIcon } from "../Logos";
+import SidebarLinkGroup from "./SidebarLinkGroup";
 
-export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
+export default function Sidebar() {
+  const { sidebarOpen, setSidebarOpen } = useSidebarStore();
   const pathname = usePathname();
 
   const trigger = useRef(null);
@@ -66,7 +67,13 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-center bg-white px-6 py-1.5 drop-shadow-2 dark:bg-gray">
         <Link href="/">
-          <Image src={PrimaryIcon} height={200} width={113} alt="logo" />
+          <Image
+            src={PrimaryIcon}
+            height="0"
+            width="0"
+            className="h-[48px] w-[100px]"
+            alt="logo"
+          />
         </Link>
 
         <button

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { EyeCloseIcon, EyeOpenIcon } from "@/components/Icons";
-import loginValidate from "@/lib/validate";
+import { loginValidate } from "@/lib";
 import { useFormik } from "formik";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";

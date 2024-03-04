@@ -1,6 +1,6 @@
 "use client";
 import React, { useMemo, useState } from "react";
-import { mockProjectData } from "@/data/mockData";
+import { mockProjectData } from "@/data";
 import {
   useReactTable,
   getCoreRowModel,
