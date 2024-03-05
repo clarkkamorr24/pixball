@@ -1,13 +1,17 @@
 "use client";
 import React, { useState, useRef, createRef } from "react";
 import { Field, Formik, Form } from "formik";
-import { IoCheckmarkCircleOutline } from "react-icons/io5";
-import { IoAdd, IoPencil, IoCloseOutline } from "react-icons/io5";
-import { toast } from "sonner";
+import {
+  IoAdd,
+  IoPencil,
+  IoCloseOutline,
+  IoCheckmarkCircleOutline,
+} from "react-icons/io5";
 import { cn, createCasinoSchema } from "@/lib";
 import { geo, languages, products } from "@/data";
 import { useAddData } from "@/hooks";
-import { CustomSelect, Button } from "@/components/ui";
+import { CustomSelect, Button, ErrorLabel } from "@/components/ui";
+import { toast } from "sonner";
 import { mutate } from "swr";
 
 const CasinoForm = ({ setShow }) => {
@@ -111,11 +115,11 @@ const CasinoForm = ({ setShow }) => {
                 name="companyName"
                 className={cn(
                   "rounded-md bg-primary px-2 py-2.5 text-white outline-none dark:bg-stroke",
-                  errors.companyName && "outline outline-1 outline-red",
+                  errors.companyName && "outline outline-2 outline-red",
                 )}
               />
               {errors.companyName && touched.companyName && (
-                <span className="text-red">{errors.companyName}</span>
+                <ErrorLabel name={errors.companyName} />
               )}
               <label htmlFor="domainName">Domain Name</label>
               <Field
@@ -123,11 +127,11 @@ const CasinoForm = ({ setShow }) => {
                 name="domainName"
                 className={cn(
                   "rounded-md bg-primary px-2 py-2.5 text-white outline-none dark:bg-stroke",
-                  errors.domainName && "outline outline-1 outline-red",
+                  errors.domainName && "outline outline-2 outline-red",
                 )}
               />
               {errors.domainName && touched.domainName && (
-                <span className="text-red">{errors.domainName}</span>
+                <ErrorLabel name={errors.domainName} />
               )}
               <label htmlFor="license">License</label>
               <Field
@@ -135,11 +139,11 @@ const CasinoForm = ({ setShow }) => {
                 name="license"
                 className={cn(
                   "rounded-md bg-primary px-2 py-2.5 text-white outline-none dark:bg-stroke",
-                  errors.license && "outline outline-1 outline-red",
+                  errors.license && "outline outline-2 outline-red",
                 )}
               />
               {errors.license && touched.license && (
-                <span className="text-red">{errors.license}</span>
+                <ErrorLabel name={errors.license} />
               )}
             </div>
             <div className="flex flex-col gap-3 text-white ">
@@ -147,7 +151,7 @@ const CasinoForm = ({ setShow }) => {
                 className={cn(
                   "flex flex-col gap-3 rounded-md bg-primary p-2 dark:bg-stroke",
                   (errors.deals || errors.amount) &&
-                    "outline outline-1 outline-red",
+                    "outline outline-2 outline-red",
                 )}
               >
                 <span>Deals</span>
@@ -185,7 +189,7 @@ const CasinoForm = ({ setShow }) => {
                     </span>
                   </label>
                   {errors.deals && touched.deals && (
-                    <span className="text-red">{errors.deals}</span>
+                    <ErrorLabel name={errors.deals} />
                   )}
                 </div>
                 <Field
@@ -194,13 +198,13 @@ const CasinoForm = ({ setShow }) => {
                   className="rounded-md bg-secondary px-2 py-2.5 text-white outline-none placeholder:text-white dark:bg-dark"
                 />
                 {errors.amount && touched.amount && (
-                  <span className="text-red">{errors.amount}</span>
+                  <ErrorLabel name={errors.amount} />
                 )}
               </div>
               <label className="text-black dark:text-white">Languages</label>
               <Field
                 className={
-                  errors.language && "rounded-md outline outline-1 outline-red"
+                  errors.language && "rounded-md outline outline-2 outline-red"
                 }
                 name="language"
                 options={languages}
@@ -209,14 +213,14 @@ const CasinoForm = ({ setShow }) => {
                 isMulti={false}
               />
               {errors.language && touched.language && (
-                <span className="text-red">{errors.language}</span>
+                <ErrorLabel name={errors.language} />
               )}
               <label className="text-black dark:text-white">
                 Blocked GEO(s)
               </label>
               <Field
                 className={
-                  errors.geo && "rounded-md outline outline-1 outline-red"
+                  errors.geo && "rounded-md outline outline-2 outline-red"
                 }
                 name="geo"
                 options={geo}
@@ -224,9 +228,7 @@ const CasinoForm = ({ setShow }) => {
                 placeholder="Select a country..."
                 isMulti={true}
               />
-              {errors.geo && touched.geo && (
-                <span className="text-red">{errors.geo}</span>
-              )}
+              {errors.geo && touched.geo && <ErrorLabel name={errors.geo} />}
             </div>
             <div className="flex flex-col gap-3">
               <div className="item flex flex-col gap-1">
@@ -271,7 +273,7 @@ const CasinoForm = ({ setShow }) => {
                     className={cn(
                       `h-40 w-full resize-none rounded-md border border-primary bg-transparent p-2 text-lg text-black outline-none dark:border-stroke dark:text-white`,
                       isEditing ? "" : "cursor-not-allowed",
-                      errors.listOfIPs && "outline outline-1 outline-red",
+                      errors.listOfIPs && "outline outline-2 outline-red",
                     )}
                   />
                   <span
@@ -282,7 +284,7 @@ const CasinoForm = ({ setShow }) => {
                   </span>
                 </div>
                 {errors.listOfIPs && touched.listOfIPs && (
-                  <span className="text-red">{errors.listOfIPs}</span>
+                  <ErrorLabel name={errors.listOfIPs} />
                 )}
               </div>
             </div>
@@ -291,7 +293,7 @@ const CasinoForm = ({ setShow }) => {
               <div
                 className={cn(
                   "mb-5 flex flex-col gap-2 rounded-md bg-primary px-4 py-2 text-white dark:bg-stroke",
-                  errors.products && "outline outline-1 outline-red",
+                  errors.products && "outline outline-2 outline-red",
                 )}
               >
                 <input
@@ -316,14 +318,11 @@ const CasinoForm = ({ setShow }) => {
                       <span className="flex rounded-md p-2 outline outline-1 peer-checked:bg-secondary peer-checked:dark:bg-primary">
                         {product.value}
                       </span>
-                      {/* <span className="absolute right-1 top-1 z-10 opacity-0 transition-all peer-checked:opacity-100">
-                        <IoCheckmarkCircleOutline size={22} />
-                      </span> */}
                     </label>
                   ))}
                 </div>
                 {errors.products && touched.products && (
-                  <span className="text-red">{errors.products}</span>
+                  <ErrorLabel name={errors.products} />
                 )}
               </div>
               <Button label="Submit" className="justify-center" type="submit" />

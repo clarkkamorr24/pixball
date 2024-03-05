@@ -36,7 +36,7 @@ export async function POST(req, res) {
       headers: headers,
       body: JSON.stringify(body),
     });
-
+    console.log("Res", res);
     if (!res.ok) {
       const errorData = await res.json();
       const { code, message } = errorData;

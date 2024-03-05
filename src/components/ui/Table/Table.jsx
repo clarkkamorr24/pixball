@@ -91,6 +91,13 @@ export const Table = ({ data, columns, expand }) => {
             ))}
           </thead>
           <tbody>
+            {data.length === 0 && (
+              <tr>
+                <td colSpan={8} className="p-10 text-center">
+                  No records found.
+                </td>
+              </tr>
+            )}
             {table.getRowModel().rows.map((row) => {
               return (
                 <React.Fragment key={row.id}>

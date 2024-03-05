@@ -3,6 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { Button } from "@/components/ui";
 
 const Logout = () => {
   const { data: session } = useSession();
@@ -27,12 +28,7 @@ const Logout = () => {
 
   return (
     <div>
-      <button
-        className="rounded-md bg-red px-2 py-1 text-xs text-white"
-        onClick={handleLogout}
-      >
-        Logout
-      </button>
+      <Button label="Logout" className="bg-red py-1" onClick={handleLogout} />
     </div>
   );
 };

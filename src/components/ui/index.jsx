@@ -2,6 +2,7 @@ export * from "./Action";
 export * from "./Button";
 export * from "./CrossCheck";
 export * from "./CustomSelect";
+export * from "./Error";
 // export * from "./Modal";
 export * from "./SkeletonLoading";
 export * from "./Table";
